@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta class="rounded-full" name='impact-site-verification' value='36441cb5-1604-49ba-9d8c-179f75ee9944'>    
+    <script type="text/javascript">(function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})('https://utt.impactcdn.com/P-A7288884-67bd-494f-9fd2-e4ec8ffec50e1.js','script','impactStat',document,window);impactStat('transformLinks');impactStat('trackImpression');</script>
+    <script src="https://quge5.com/88/tag.min.js" data-zone="238107" async data-cfasync="false"></script>
+    <meta name="google-site-verification" content="kB2-IWp0u5zjx67Cpsw6ll1AwzIx1WCGvlCFrYnIRz4" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>TubeSeekify | Secure Admin Dashboard</title>
+    <meta name="description" content="Master database and architecture control panel for TubeSeekify.">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <meta name="theme-color" content="#1e40af">
+    
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "TubeSeekify",
+      "url": "https://tubeseekify.online/"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Inter', 'sans-serif'], 
+                        montserrat: ['Montserrat', 'sans-serif'],
+                        code: ['Fira Code', 'monospace']
+                    },
+                    colors: { 
+                        brand: '#2563eb', 
+                        royal: '#1d4ed8',
+                        electric: '#3b82f6',
+                        dark: '#1e293b',
+                        darker: '#ffffff',
+                        light: '#f8fafc',
+                        danger: '#ef4444'
+                    },
+                    boxShadow: {
+                        'glow': '0 0 25px rgba(37, 99, 235, 0.25)',
+                        'glow-yellow': '0 0 20px rgba(255, 227, 69, 0.2)',
+                        'glow-red': '0 0 20px rgba(239, 68, 68, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+        <style>
+        /* Modern Premium HSL-based Glassmorphic Design System */
+        :root {
+            --bg-main: #f3f6fc; /* Pure sky-slate backdrop */
+            --bg-card: #ffffff;
+            --bg-sidebar: #ffffff;
+            --bg-sidebar-rgb: 255, 255, 255;
+            --border-primary: #e2ecf8; /* Soft blue-slate outline */
+            --border-card: #e2ecf8;
+            --text-title: #0b1a30; /* Bold deep navy */
+            --text-body: #3c4f6b; /* Slate body */
+            --text-muted: #8ca2c0; /* Gentle grey-blue */
+            --color-primary: #2563eb; /* Brilliant electric blue */
+            --color-primary-rgb: 37, 99, 235;
+            --color-hover: #1d4ed8;
+            --color-light: #f0f5ff; /* Soft blue highlight tint */
+            --color-shadow: rgba(37, 99, 235, 0.03);
+            --font-family-display: 'Montserrat', sans-serif;
+            --font-family-sans: 'Inter', sans-serif;
+        }
+
+        .dark {
+            --bg-main: #060913; /* Deep space navy background */
+            --bg-card: #0c1222; /* Rich dark navy card */
+            --bg-sidebar: #0c1222;
+            --bg-sidebar-rgb: 12, 18, 34;
+            --border-primary: #18243c; /* Slate border */
+            --border-card: #18243c;
+            --text-title: #f8fafc; /* Crisp white */
+            --text-body: #cbd5e1; /* Soft slate grey */
+            --text-muted: #64748b; /* Muted grey */
+            --color-primary: #3b82f6; /* Glowing sky blue */
+            --color-primary-rgb: 59, 130, 246;
+            --color-hover: #60a5fa;
+            --color-light: rgba(59, 130, 246, 0.08);
+            --color-shadow: rgba(0, 0, 0, 0.4);
+        }
+
+        /* Base & Smoothing Reset */
+        body { 
+            background-color: var(--bg-main); 
+            color: var(--text-body); 
+            font-family: var(--font-family-sans);
+            overflow-x: hidden; 
+            scroll-behavior: smooth; 
+            -webkit-font-smoothing: antialiased; 
+            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+
+        h1, h2, h3, h4, h5, h6, .font-montserrat {
+            font-family: var(--font-family-display);
+        }
+
+        /* Tab Visibility Animations */
+        .tab-content, .form-section { display: none; }
+        .tab-content.active, .form-section.active { 
+            display: block; 
+            animation: premiumFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+        }
+        @keyframes premiumFadeIn { 
+            from { opacity: 0; transform: translateY(16px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        /* Premium Loader & Spin */
+        .loader { 
+            border: 2.5px solid rgba(var(--color-primary-rgb), 0.2); 
+            border-top: 2.5px solid var(--color-primary); 
+            border-radius: 50%; 
+            width: 18px; 
+            height: 18px; 
+            animation: premiumSpin 0.6s linear infinite; 
+            display: inline-block; 
+            vertical-align: middle; 
+        }
+        @keyframes premiumSpin { 
+            0% { transform: rotate(0deg); } 
+            100% { transform: rotate(360deg); } 
+        }
+
+        /* Sleek Scrollbars */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-main);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-primary);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-primary);
+        }
+
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Premium horizontal table sliders styling */
+        .overflow-x-auto {
+            scrollbar-width: thin !important;
+            scrollbar-color: var(--color-primary) rgba(0, 0, 0, 0.05) !important;
+        }
+        .overflow-x-auto::-webkit-scrollbar {
+            height: 8px !important;
+            display: block !important;
+        }
+        .overflow-x-auto::-webkit-scrollbar-track {
+            background: rgba(var(--color-primary-rgb), 0.05) !important;
+            border-radius: 10px !important;
+            margin: 0 20px !important;
+        }
+        .overflow-x-auto::-webkit-scrollbar-thumb {
+            background: linear-gradient(90deg, var(--color-primary), var(--color-hover)) !important;
+            border-radius: 10px !important;
+            box-shadow: 0 2px 8px rgba(var(--color-primary-rgb), 0.25) !important;
+        }
+        .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+            background: var(--color-hover) !important;
+        }
+
+        /* Premium Inputs & Form Fields Controls */
+        input, textarea, select { 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; 
+            border: 1px solid var(--border-primary) !important; 
+            color: var(--text-title) !important; 
+            background-color: var(--bg-card) !important; 
+            border-radius: 16px !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02) !important;
+            padding: 14px 18px !important;
+        }
+        input:focus, textarea:focus, select:focus { 
+            border-color: var(--color-primary) !important; 
+            box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.15) !important; 
+            outline: none !important; 
+            transform: translateY(-1px);
+        }
+        
+        /* Harmonious High-End Category Badges styling */
+        .cat-badge-video { background-color: rgba(239, 68, 68, 0.08); color: #ef4444; border: 1.5px solid rgba(239, 68, 68, 0.2); }
+        .cat-badge-gpt { background-color: rgba(16, 185, 129, 0.08); color: #10b981; border: 1.5px solid rgba(16, 185, 129, 0.2); }
+        .cat-badge-tool { background-color: rgba(59, 130, 246, 0.08); color: #3b82f6; border: 1.5px solid rgba(59, 130, 246, 0.2); }
+        .cat-badge-shop { background-color: rgba(245, 158, 11, 0.08); color: #f59e0b; border: 1.5px solid rgba(245, 158, 11, 0.2); }
+        .cat-badge-prompt { background-color: rgba(6, 182, 212, 0.08); color: #06b6d4; border: 1.5px solid rgba(6, 182, 212, 0.2); }
+        .cat-badge-app { background-color: rgba(249, 115, 22, 0.08); color: #f97316; border: 1.5px solid rgba(249, 115, 22, 0.2); }
+
+        /* Notification Toast Styling Override */
+        #notification-toast {
+            position: fixed; 
+            bottom: 30px; 
+            right: 30px; 
+            z-index: 999999; 
+            background: var(--bg-card); 
+            color: var(--text-title); 
+            padding: 16px 24px; 
+            border-radius: 18px;
+            display: flex; 
+            align-items: center; 
+            gap: 14px; 
+            font-weight: 700; 
+            font-size: 14px; 
+            box-shadow: 0 15px 35px var(--color-shadow); 
+            border: 1px solid var(--border-card); 
+            border-left: 6px solid var(--color-primary); 
+            transform: translateX(150%); 
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, border-color 0.3s ease;
+        }
+        #notification-toast.show { transform: translateX(0); }
+        #notification-toast.error { border-left-color: #ef4444; }
+
+        /* Premium Checkbox Toggle Controls */
+        .rec-checkbox { 
+            appearance: none; 
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: var(--bg-card); 
+            border: 2px solid var(--border-primary); 
+            border-radius: 8px; 
+            cursor: pointer; 
+            width: 22px;
+            height: 22px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); 
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            outline: none;
+        }
+        .rec-checkbox:checked { 
+            background-color: var(--color-primary) !important; 
+            border-color: var(--color-primary) !important; 
+            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='%23fff' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e") !important; 
+            background-size: 80% 80% !important; 
+            background-position: center !important; 
+            background-repeat: no-repeat !important; 
+            transform: scale(1.05);
+        }
+        /* Visual feedback when parent label's checkbox is checked */
+        label:has(.rec-checkbox:checked) {
+            border-color: var(--color-primary) !important;
+            background-color: rgba(37, 99, 235, 0.04) !important;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08) !important;
+        }
+        .dark label:has(.rec-checkbox:checked) {
+            background-color: rgba(59, 130, 246, 0.06) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+        }
+
+        /* Animated Logo */
+        .animated-logo { 
+            background: linear-gradient(to right, #1d4ed8 20%, #2563eb 50%, #1d4ed8 80%); 
+            -webkit-background-clip: text; 
+            background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            background-size: 200% auto; 
+            animation: textShine 3s linear infinite; 
+        }
+        .animated-logo-dark { 
+            background: linear-gradient(to right, #2563eb 20%, #3b82f6 50%, #2563eb 80%); 
+            -webkit-background-clip: text; 
+            background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            background-size: 200% auto; 
+            animation: textShine 3s linear infinite; 
+        }
+        @keyframes textShine { to { background-position: 200% center; } }
+
+        /* Window Header Simulator style */
+        .terminal-header-mini { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 12px 18px; 
+            background: var(--bg-main); 
+            border-bottom: 1px solid var(--border-card); 
+            border-radius: 20px 20px 0 0; 
+        }
+        .window-dots { display: flex; gap: 6px; align-items: center; }
+        .window-dot { width: 9px; height: 9px; border-radius: 50%; }
+        .dot-r { background-color: #ff5f56; }
+        .dot-y { background-color: #ffbd2e; }
+        .dot-g { background-color: #27c93f; }
+
+        /* Sidebar Styling Glassmorphism Redesign */
+        aside {
+            background-color: rgba(var(--bg-sidebar-rgb), 0.8) !important;
+            backdrop-filter: blur(24px) !important;
+            -webkit-backdrop-filter: blur(24px) !important;
+            border-right: 1px solid var(--border-card) !important;
+            box-shadow: 5px 0 35px var(--color-shadow) !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+        aside .p-8 span {
+            background: linear-gradient(to right, #1d4ed8, #2563eb) !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+        }
+        aside .p-8 p {
+            color: var(--color-primary) !important;
+            background-color: var(--color-light) !important;
+            border: 1px solid rgba(var(--color-primary-rgb), 0.15) !important;
+        }
+        aside .nav-btn {
+            color: var(--text-muted) !important;
+            font-weight: 600 !important;
+            border-radius: 16px !important;
+            margin: 4px 12px !important;
+            padding: 14px 20px !important;
+            border: 1px solid transparent !important;
+            transition: all 0.25s ease !important;
+        }
+        aside .nav-btn svg {
+            stroke: var(--text-muted) !important;
+            transition: all 0.25s ease !important;
+        }
+        aside .nav-btn:hover {
+            background-color: var(--color-light) !important;
+            color: var(--color-primary) !important;
+            transform: translateX(4px);
+        }
+        aside .nav-btn:hover svg {
+            stroke: var(--color-primary) !important;
+        }
+        aside .nav-btn.bg-white\/10 {
+            background: linear-gradient(90deg, var(--color-light), transparent) !important;
+            color: var(--color-primary) !important;
+            border-left: 4px solid var(--color-primary) !important;
+            border-radius: 0 16px 16px 0 !important;
+            font-weight: 750 !important;
+        }
+        aside .nav-btn.bg-white\/10 svg {
+            stroke: var(--color-primary) !important;
+        }
+        aside .bg-black\/40 {
+            background-color: var(--bg-main) !important;
+            border-top: 1px solid var(--border-card) !important;
+        }
+        aside #admin-display-email {
+            color: var(--color-primary) !important;
+            font-weight: 700;
+        }
+        aside .logout-btn-action {
+            background-color: rgba(239, 68, 68, 0.08) !important;
+            color: #ef4444 !important;
+            border: 1px solid rgba(239, 68, 68, 0.15) !important;
+            border-radius: 14px !important;
+        }
+        aside .logout-btn-action:hover {
+            background-color: #ef4444 !important;
+            color: #ffffff !important;
+            border-color: #ef4444 !important;
+            box-shadow: 0 8px 20px rgba(239, 68, 68, 0.2) !important;
+        }
+        aside .logout-btn-action svg {
+            stroke: currentColor !important;
+        }
+
+        /* Modern Software Card Window overrides */
+        .terminal-header-mini span {
+            color: var(--text-muted) !important;
+        }
+
+        /* Login Screen Overhaul */
+        #login-screen {
+            background-color: var(--bg-main) !important;
+            background-image: radial-gradient(circle at 10% 10%, rgba(var(--color-primary-rgb), 0.1) 0%, transparent 40%), radial-gradient(circle at 90% 90%, rgba(139, 92, 246, 0.08) 0%, transparent 40%) !important;
+            transition: all 0.3s ease !important;
+        }
+        #login-screen::before {
+            content: '';
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(var(--color-primary-rgb), 0.1) 0%, transparent 70%);
+            top: -150px;
+            left: -150px;
+            filter: blur(60px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        #login-screen::after {
+            content: '';
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.06) 0%, transparent 70%);
+            bottom: -150px;
+            right: -150px;
+            filter: blur(60px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        #login-screen > div {
+            box-shadow: 0 25px 60px rgba(37, 99, 235, 0.04) !important;
+            border: 1px solid var(--border-card) !important;
+            background-color: rgba(var(--bg-sidebar-rgb), 0.8) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            border-radius: 40px !important;
+            transition: all 0.3s ease !important;
+        }
+        .dark #login-screen > div {
+            box-shadow: 0 35px 75px rgba(0, 0, 0, 0.6) !important;
+        }
+        #login-btn {
+            background: linear-gradient(135deg, var(--color-hover), var(--color-primary)) !important;
+            color: #ffffff !important;
+            border-radius: 16px !important;
+            box-shadow: 0 10px 25px rgba(var(--color-primary-rgb), 0.25) !important;
+            font-weight: 750;
+            letter-spacing: 0.05em;
+        }
+        #login-btn:hover {
+            box-shadow: 0 14px 30px rgba(var(--color-primary-rgb), 0.35) !important;
+            transform: translateY(-2px);
+        }
+
+        /* Google Login Button adaptation */
+        #google-login-btn {
+            background-color: var(--bg-card) !important;
+            color: var(--text-title) !important;
+            border: 1px solid var(--border-primary) !important;
+            border-radius: 16px !important;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            box-shadow: 0 4px 12px var(--color-shadow) !important;
+        }
+        #google-login-btn:hover {
+            background-color: var(--color-light) !important;
+            border-color: var(--color-primary) !important;
+            box-shadow: 0 8px 24px rgba(var(--color-primary-rgb), 0.15) !important;
+            transform: translateY(-1px);
+        }
+
+        /* Premium Modals Styling */
+        #reply-modal, #post-modal, #banner-modal {
+            background-color: rgba(6, 10, 19, 0.6) !important;
+            backdrop-filter: blur(16px) !important;
+        }
+        #reply-modal > div, #post-modal > div, #banner-modal > div {
+            background-color: var(--bg-card) !important;
+            box-shadow: 0 35px 85px rgba(0, 0, 0, 0.15) !important;
+            border: 1px solid var(--border-card) !important;
+            border-radius: 32px !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+        .dark #reply-modal > div, .dark #post-modal > div, .dark #banner-modal > div {
+            box-shadow: 0 35px 85px rgba(0, 0, 0, 0.6) !important;
+        }
+        #reply-modal h3, #post-modal h3, #banner-modal h3 {
+            color: var(--text-title) !important;
+        }
+        #reply-modal p, #post-modal p, #banner-modal p {
+            color: var(--text-muted) !important;
+        }
+        #btn-submit-reply, #btn-submit-banner {
+            background-color: var(--color-primary) !important;
+            color: #ffffff !important;
+            border: 1px solid transparent !important;
+            border-radius: 16px !important;
+            font-weight: 750;
+        }
+        #btn-submit-reply:hover, #btn-submit-banner:hover {
+            background-color: var(--color-hover) !important;
+            box-shadow: 0 8px 20px rgba(var(--color-primary-rgb), 0.2) !important;
+            transform: translateY(-1px);
+        }
+        #btn-submit-post {
+            background: linear-gradient(135deg, var(--color-hover), var(--color-primary)) !important;
+            box-shadow: 0 10px 25px rgba(var(--color-primary-rgb), 0.25) !important;
+            border-radius: 16px !important;
+            color: #ffffff !important;
+            font-weight: 750;
+        }
+        #btn-submit-post:hover {
+            box-shadow: 0 14px 30px rgba(var(--color-primary-rgb), 0.35) !important;
+            transform: translateY(-2px);
+        }
+
+        /* Light/Dark mode backgrounds & components overrides */
+        main {
+            background-color: var(--bg-main) !important;
+            background-image: radial-gradient(circle at 10% 10%, rgba(var(--color-primary-rgb), 0.02) 0%, transparent 40%) !important;
+            transition: background-color 0.3s ease !important;
+        }
+        .dark main {
+            background-image: radial-gradient(circle at 10% 10%, rgba(59, 130, 246, 0.04) 0%, transparent 40%) !important;
+        }
+        
+        /* Premium Soft Borders override */
+        .border-2 {
+            border-width: 1px !important;
+        }
+
+        /* Float Card Panels Overhaul */
+        .bg-white {
+            background: rgba(255, 255, 255, 0.8) !important;
+            backdrop-filter: blur(16px) !important;
+            -webkit-backdrop-filter: blur(16px) !important;
+            border: 1px solid rgba(226, 232, 240, 0.8) !important;
+            color: var(--text-body) !important;
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.03) !important;
+            border-radius: 28px !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+        .dark .bg-white {
+            background: rgba(12, 18, 34, 0.85) !important;
+            border: 1px solid rgba(30, 45, 74, 0.5) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+        }
+        .bg-white:hover {
+            transform: translateY(-5px) !important;
+            background: #ffffff !important;
+            border-color: var(--color-primary) !important;
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.08) !important;
+        }
+        .dark .bg-white:hover {
+            background: #0c1222 !important;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 15px rgba(59, 130, 246, 0.15) !important;
+        }
+
+        .text-dark {
+            color: var(--text-title) !important;
+            transition: color 0.3s ease !important;
+        }
+        .bg-slate-50 {
+            background-color: var(--bg-main) !important;
+            transition: background-color 0.3s ease !important;
+        }
+        .divide-gray-200 > * + * {
+            border-color: var(--border-card) !important;
+        }
+        tr.hover\:bg-slate-50:hover {
+            background-color: var(--bg-main) !important;
+        }
+        .border-gray-200 {
+            border-color: var(--border-card) !important;
+        }
+
+        /* Modal sub forms backgrounds override */
+        .bg-red-50, .bg-green-50, .bg-blue-50, .bg-cyan-50, .bg-orange-50, .bg-yellow-50, .bg-indigo-50 {
+            background-color: var(--color-light) !important;
+            border: 1px solid rgba(var(--color-primary-rgb), 0.15) !important;
+            color: var(--text-body) !important;
+            border-radius: 20px !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+        .bg-red-50 h4, .bg-green-50 h4, .bg-blue-50 h4, .bg-cyan-50 h4, .bg-orange-50 h4, .bg-yellow-50 h4, .bg-indigo-50 h4 {
+            color: var(--color-primary) !important;
+            border-bottom-color: rgba(var(--color-primary-rgb), 0.1) !important;
+            font-weight: 750;
+        }
+
+        /* High-End Table Styling Overhaul */
+        table {
+            background-color: transparent !important;
+        }
+        thead {
+            background: var(--bg-main) !important;
+            border-bottom: 1px solid var(--border-card) !important;
+        }
+        thead th {
+            color: var(--text-muted) !important;
+            font-weight: 750 !important;
+            text-transform: uppercase !important;
+            font-size: 10px !important;
+            letter-spacing: 0.15em !important;
+            padding: 18px 24px !important;
+        }
+        tbody tr {
+            transition: all 0.2s ease !important;
+        }
+        tbody tr td {
+            padding: 20px 24px !important;
+            border-bottom: 1px solid var(--border-card) !important;
+            background-color: var(--bg-card) !important;
+            transition: background-color 0.2s ease !important;
+        }
+        tbody tr:hover td {
+            background-color: var(--color-light) !important;
+        }
+        tbody tr:first-child td:first-child { border-top-left-radius: 12px; }
+        tbody tr:first-child td:last-child { border-top-right-radius: 12px; }
+        tbody tr:last-child td:first-child { border-bottom-left-radius: 12px; border-bottom: none !important; }
+        tbody tr:last-child td:last-child { border-bottom-right-radius: 12px; border-bottom: none !important; }
+        
+        /* Modern Hover Lifting Effects */
+        .premium-hover-lift {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .premium-hover-lift:hover {
+            transform: translateY(-4px) scale(1.008);
+            box-shadow: 0 15px 30px var(--color-shadow) !important;
+            border-color: var(--color-primary) !important;
+        }
+
+        /* Elegant Primary Buttons Redesign */
+        button.bg-\[\#111111\] {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-hover)) !important;
+            color: #ffffff !important;
+            border: none !important;
+            border-radius: 16px !important;
+            padding: 14px 28px !important;
+            font-weight: 750 !important;
+            letter-spacing: 0.05em !important;
+            box-shadow: 0 8px 20px rgba(var(--color-primary-rgb), 0.2) !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+        button.bg-\[\#111111\]:hover {
+            background: linear-gradient(135deg, var(--color-hover), var(--color-primary)) !important;
+            box-shadow: 0 12px 28px rgba(var(--color-primary-rgb), 0.35) !important;
+            transform: translateY(-2px) !important;
+        }
+        button.bg-\[\#111111\] svg {
+            color: #ffffff !important;
+        }
+
+        /* High-End Theme Switch Toggle override */
+        #theme-toggle {
+            background-color: var(--color-light) !important;
+            border: 1px solid rgba(var(--color-primary-rgb), 0.1) !important;
+            color: var(--color-primary) !important;
+            border-radius: 12px !important;
+            padding: 10px !important;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+        #theme-toggle:hover {
+            background-color: var(--color-primary) !important;
+            color: #ffffff !important;
+            transform: rotate(15deg) scale(1.05) !important;
+        }
+    </style>
+
+</head>
+<body class="flex h-screen font-sans relative text-gray-800 selection:bg-electric selection:text-white">
+
+    <div id="notification-toast">
+        <svg id="toast-icon" class="w-5 h-5 text-electric" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        <span id="toast-message">System Notification</span>
+    </div>
+
+    <div id="login-screen" class="fixed inset-0 bg-darker z-[100] flex items-center justify-center p-4 backdrop-blur-md">
+        <div class="bg-white p-8 md:p-14 rounded-[40px] w-full max-w-md shadow-2xl border border-gray-100 relative overflow-hidden">
+            <div class="absolute -top-20 -right-20 w-48 h-48 bg-electric/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="text-center mb-10 font-montserrat flex flex-col items-center relative z-10">
+                <span class="text-4xl font-black tracking-tighter uppercase animated-logo">TubeSeekify</span>
+                <p class="text-gray-500 font-black tracking-[0.2em] text-[10px] uppercase mt-3">Admin Portal</p>
+            </div>
+            
+            <form id="login-form" class="space-y-5 relative z-10">
+                <div>
+                    <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Email Address</label>
+                    <input id="admin-email" type="email" required placeholder="admin@tubeseekify.com" class="w-full bg-slate-50 p-4 rounded-2xl text-sm font-bold text-dark border-2 border-gray-100 focus:border-electric transition-all shadow-sm" />
+                </div>
+                <div>
+                    <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Password</label>
+                    <input id="admin-password" type="password" required placeholder="••••••••" class="w-full bg-slate-50 p-4 rounded-2xl text-sm font-bold text-dark border-2 border-gray-100 focus:border-electric transition-all shadow-sm" />
+                </div>
+                <button type="submit" id="login-btn" class="w-full bg-electric text-white font-black py-4 rounded-2xl transition-all shadow-xl mt-6 hover:scale-[1.02] hover:shadow-glow uppercase tracking-[0.1em] text-xs flex items-center justify-center border-2 border-transparent">
+                    Login
+                </button>
+            </form>
+            
+            <div class="relative flex py-8 items-center z-10">
+                <div class="flex-grow border-t border-gray-200"></div>
+                <span class="mx-5 text-[10px] font-black text-gray-300 uppercase tracking-widest">OR CONNECT WITH</span>
+                <div class="flex-grow border-t border-gray-200"></div>
+            </div>
+            
+            <button id="google-login-btn" type="button" class="google-btn-action w-full bg-white border-2 border-gray-200 hover:bg-slate-50 hover:border-gray-300 font-black py-4 rounded-2xl flex items-center justify-center text-xs shadow-sm transition-all uppercase tracking-widest text-gray-700 relative z-10 active:scale-95">
+                <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg> 
+                Connect with Google
+            </button>
+        </div>
+    </div>
+
+    <div id="admin-panel" class="hidden w-full h-screen overflow-hidden flex flex-row relative">
+        <div id="sidebar-overlay" class="fixed inset-0 z-40 bg-black/40 hidden md:hidden" onclick="window.toggleSidebar()"></div>
+
+        <aside id="admin-sidebar" class="fixed inset-y-0 left-0 z-50 w-[280px] -translate-x-full md:relative md:translate-x-0 bg-darker text-white flex flex-col h-full flex-shrink-0 shadow-2xl border-r border-white/5 transition-transform duration-300 overflow-y-auto hide-scrollbar">
+            <div class="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-electric/10 to-transparent pointer-events-none"></div>
+
+            <div class="p-8 pb-6 border-b border-white/5 font-montserrat flex flex-col items-center md:items-start relative z-10 shrink-0 w-full">
+                <div class="flex items-center justify-between w-full">
+                    <span class="text-3xl font-black tracking-tighter uppercase animated-logo-dark">TubeSeekify</span>
+                    <button type="button" id="theme-toggle" class="p-2.5 rounded-xl border border-gray-250 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 transition duration-300 flex items-center justify-center" title="Toggle theme">
+                        <i class="fa-solid fa-moon text-slate-500 dark:hidden"></i>
+                        <i class="fa-solid fa-sun hidden dark:inline text-amber-500"></i>
+                    </button>
+                </div>
+                <p class="text-gray-400 text-[10px] font-black uppercase tracking-[0.2em] mt-2 flex items-center bg-white/5 px-3 py-1.5 rounded-lg border border-white/10 shadow-sm mt-4 w-full">
+                    <span class="w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse shadow-glow"></span> System Online
+                </p>
+            </div>
+            
+            <nav class="flex-1 py-4 space-y-1 relative z-10 px-2 shrink-0">
+                <button onclick="window.switchTab('dashboard')" id="nav-dashboard" class="nav-btn w-full flex items-center px-6 py-4 rounded-2xl text-left hover:bg-white/5 transition text-gray-400 border border-transparent">
+                    <svg class="w-5 h-5 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg> Dashboard
+                </button>
+
+                <button onclick="window.switchTab('notifications')" id="nav-notifications" class="nav-btn w-full flex items-center justify-between px-6 py-4 rounded-2xl text-left hover:bg-white/5 transition text-gray-400 border border-transparent">
+                    <div class="flex items-center"><svg class="w-5 h-5 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg> Comments & Moderation</div>
+                    <span id="notif-badge" class="bg-red-500 text-white text-[10px] font-black px-2 py-0.5 rounded-full hidden shadow-glow-red border border-red-400">0</span>
+                </button>
+
+                <button onclick="window.switchTab('reqs')" id="nav-reqs" class="nav-btn w-full flex justify-between items-center px-6 py-4 rounded-2xl text-left hover:bg-white/5 transition text-gray-400 border border-transparent">
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                        Pending Payments
+                    </div>
+                    <span id="reqs-badge" class="bg-amber-500 text-black text-[10px] font-black px-2 py-0.5 rounded-full hidden border border-amber-400 shadow-glow-yellow">0</span>
+                </button>
+
+                <button onclick="window.switchTab('archive')" id="nav-archive" class="nav-btn w-full flex items-center px-6 py-4 rounded-2xl text-left hover:bg-white/5 transition text-gray-400 border border-transparent">
+                    <svg class="w-5 h-5 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    Payment History
+                </button>
+                
+                
+                <div class="px-6 py-4 mt-2 text-[10px] font-black text-gray-500 uppercase tracking-widest border-t border-white/5">Content Manager</div>
+                 <button onclick="window.openManager('video')" id="nav-video" class="nav-btn w-full flex items-center px-6 py-3.5 rounded-2xl text-left hover:bg-white/5 transition text-gray-400 border border-transparent group"><svg class="w-4 h-4 mr-4 text-red-500 group-hover:scale-125 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg> Videos</button>
+                <button onclick="window.openManager('gpt')" id="nav-gpt" class="nav-btn w-full flex items-center px-6 py-3.5 rounded-2xl text-left hover:bg-white/5 transition text-gray-400 border border-transparent group"><svg class="w-4 h-4 mr-4 text-green-500 group-hover:scale-125 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> GPTs</button>
+                <button onclick="window.openManager('tool')" id="nav-tool" class="nav-btn w-full flex items-center px-6 py-3.5 rounded-2xl text-left hover:bg-white/5 transition text-gray-400 border border-transparent group"><svg class="w-4 h-4 mr-4 text-blue-500 group-hover:scale-125 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg> AI Tools</button>
+                <button onclick="window.openManager('prompt')" id="nav-prompt" class="nav-btn w-full flex items-center px-6 py-3.5 rounded-2xl text-left hover:bg-white/5 transition text-gray-400 border border-transparent group"><svg class="w-4 h-4 mr-4 text-cyan-500 group-hover:scale-125 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg> Prompts</button>
+                <button onclick="window.openManager('app')" id="nav-app" class="nav-btn w-full flex items-center px-6 py-3.5 rounded-2xl text-left hover:bg-white/5 transition text-gray-400 border border-transparent group"><svg class="w-4 h-4 mr-4 text-orange-500 group-hover:scale-125 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg> Mobile Apps</button>
+                <button onclick="window.openManager('shop')" id="nav-shop" class="nav-btn w-full flex items-center px-6 py-3.5 rounded-2xl text-left hover:bg-white/5 transition text-gray-400 border border-transparent group"><svg class="w-4 h-4 mr-4 text-yellow-500 group-hover:scale-125 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg> Shop</button>
+ 
+                <div class="px-6 py-4 mt-2 text-[10px] font-black text-gray-500 uppercase tracking-widest border-t border-white/5">System Settings</div>
+                <button onclick="window.switchTab('users')" id="nav-users" class="nav-btn w-full flex items-center px-6 py-3.5 rounded-2xl text-left hover:bg-white/5 transition text-gray-400 border border-transparent"><svg class="w-4 h-4 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg> Registered Users</button>
+                <button onclick="window.switchTab('categories')" id="nav-categories" class="nav-btn w-full flex items-center px-6 py-3.5 rounded-2xl text-left hover:bg-white/5 transition text-gray-400 border border-transparent"><svg class="w-4 h-4 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg> Categories</button>
+                <button onclick="window.switchTab('banners')" id="nav-banners" class="nav-btn w-full flex items-center px-6 py-3.5 rounded-2xl text-left hover:bg-white/5 transition text-gray-400 border border-transparent"><svg class="w-4 h-4 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg> Banners</button>
+                <button onclick="window.switchTab('promo-codes')" id="nav-promo-codes" class="nav-btn w-full flex items-center px-6 py-3.5 rounded-2xl text-left hover:bg-white/5 transition text-gray-400 border border-transparent group"><svg class="w-4 h-4 mr-4 text-purple-500 group-hover:scale-125 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Promo Codes</button>
+                <button onclick="window.switchTab('settings')" id="nav-settings" class="nav-btn w-full flex items-center px-6 py-3.5 rounded-2xl text-left hover:bg-white/5 transition text-gray-400 border border-transparent"><svg class="w-4 h-4 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg> Settings</button>
+            </nav>
+
+            <div class="p-8 border-t border-white/5 bg-black/40 relative z-10 shrink-0 mt-auto">
+                <p id="admin-display-email" class="text-[11px] font-bold text-electric truncate mb-2 opacity-80 text-center uppercase tracking-widest"></p>
+                <div id="admin-uid-debug" class="text-[9px] font-mono text-gray-400 text-center break-all mb-4 hidden px-2 py-1.5 bg-white/5 rounded-xl border border-white/10 select-all cursor-pointer hover:text-white hover:bg-white/10 hover:border-white/20 transition-all" title="Click to copy Admin UID"></div>
+                <button type="button" class="logout-btn-action w-full flex items-center justify-center px-4 py-4 bg-red-500/10 text-red-500 hover:bg-red-50 hover:text-white rounded-2xl transition-all text-xs font-black uppercase tracking-widest border border-red-500/20 hover:border-red-500 shadow-sm active:scale-95 hover:shadow-glow-red">
+                    <svg class="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
+                    Secure Logout
+                </button>
+            </div>
+        </aside>
+
+        <main class="flex-1 min-w-0 h-full overflow-y-auto bg-slate-100 p-0 md:p-12 relative flex flex-col">
+            
+            <!-- Mobile Header Top Bar -->
+            <header class="flex md:hidden items-center justify-between bg-darker px-6 py-4 border-b border-white/5 sticky top-0 z-30 shadow-md w-full select-none shrink-0">
+                <span class="text-xl font-black tracking-tighter uppercase text-white animated-logo-dark">TubeSeekify</span>
+                <button type="button" onclick="window.toggleSidebar()" class="p-2.5 bg-white/5 hover:bg-white/10 rounded-xl text-white hover:text-white active:scale-95 transition-all border border-white/10 flex items-center justify-center">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
+            </header>
+
+            <div class="flex-1 overflow-y-auto p-6 md:p-0">
+            
+            <div id="tab-dashboard" class="tab-content active">
+                <div class="flex justify-between items-center mb-10 border-b border-gray-200 pb-5">
+                    <h2 class="text-4xl font-black font-montserrat text-dark tracking-tight">Dashboard Overview</h2>
+                    <div id="backup-action-deck" class="flex gap-3">
+                        <button onclick="window.exportDatabaseBackup()" class="bg-white hover:bg-gray-50 border-2 border-electric text-electric px-6 py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all active:scale-95 shadow-sm">Export DB Backup</button>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+                     <div class="bg-white p-8 rounded-[32px] border-2 border-gray-200 shadow-sm flex items-center hover:scale-[1.02] transition-transform duration-300 group cursor-pointer relative overflow-hidden" onclick="window.switchTab('users')">
+                        <div class="w-16 h-16 bg-blue-50 text-electric rounded-2xl flex items-center justify-center mr-6 group-hover:bg-electric group-hover:text-white transition-colors border border-blue-100 shadow-inner">
+                            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-gray-400 font-black uppercase tracking-[0.2em] mb-1">Total Users</p>
+                            <h3 id="stat-total-users" class="text-4xl font-black text-dark tracking-tight">0</h3>
+                        </div>
+                     </div>
+                     <div class="bg-white p-8 rounded-[32px] border-2 border-gray-200 shadow-sm flex items-center hover:scale-[1.02] transition-transform duration-300 group cursor-pointer relative overflow-hidden" onclick="window.switchTab('notifications')">
+                        <div class="w-16 h-16 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center mr-6 group-hover:bg-red-500 group-hover:text-white transition-colors border border-red-100 shadow-inner">
+                            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-gray-400 font-black uppercase tracking-[0.2em] mb-1">Unread Comments</p>
+                            <h3 id="dashboard-unread-count" class="text-4xl font-black text-dark tracking-tight">0</h3>
+                        </div>
+                     </div>
+                     <div class="bg-white p-8 rounded-[32px] border-2 border-gray-200 shadow-sm flex items-center hover:scale-[1.02] transition-transform duration-300 group relative overflow-hidden">
+                        <div class="w-16 h-16 bg-green-50 text-green-600 rounded-2xl flex items-center justify-center mr-6 shadow-inner border border-green-100">
+                            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-gray-400 font-black uppercase tracking-[0.2em] mb-1">System Time</p>
+                            <h3 id="dashboard-clock" class="text-xl font-black text-dark tracking-tight mt-1">--:--:--</h3>
+                        </div>
+                     </div>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                    <div onclick="window.openManager('video')" class="bg-white p-6 rounded-2xl border-2 border-gray-200 shadow-sm flex items-center cursor-pointer hover:border-electric transition-all group">
+                        <div class="w-12 h-12 bg-red-50 text-red-600 rounded-xl flex items-center justify-center mr-4"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div>
+                        <div><p class="text-[9px] text-gray-400 font-black uppercase tracking-widest">Videos</p><h3 id="stat-videos" class="text-xl font-black text-dark">0</h3></div>
+                    </div>
+                    <div onclick="window.openManager('gpt')" class="bg-white p-6 rounded-2xl border-2 border-gray-200 shadow-sm flex items-center cursor-pointer hover:border-electric transition-all group">
+                        <div class="w-12 h-12 bg-green-50 text-green-600 rounded-xl flex items-center justify-center mr-4"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle></svg></div>
+                        <div><p class="text-[9px] text-gray-400 font-black uppercase tracking-widest">GPTs</p><h3 id="stat-gpts" class="text-xl font-black text-dark">0</h3></div>
+                    </div>
+                    <div onclick="window.openManager('tool')" class="bg-white p-6 rounded-2xl border-2 border-gray-200 shadow-sm flex items-center cursor-pointer hover:border-electric transition-all group">
+                        <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mr-4"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg></div>
+                        <div><p class="text-[9px] text-gray-400 font-black uppercase tracking-widest">Tools</p><h3 id="stat-tools" class="text-xl font-black text-dark">0</h3></div>
+                    </div>
+                    <div onclick="window.openManager('prompt')" class="bg-white p-6 rounded-2xl border-2 border-gray-200 shadow-sm flex items-center cursor-pointer hover:border-electric transition-all group">
+                        <div class="w-12 h-12 bg-cyan-50 text-cyan-600 rounded-xl flex items-center justify-center mr-4"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline></svg></div>
+                        <div><p class="text-[9px] text-gray-400 font-black uppercase tracking-widest">Prompts</p><h3 id="stat-prompts" class="text-xl font-black text-dark">0</h3></div>
+                    </div>
+                    <div onclick="window.openManager('app')" class="bg-white p-6 rounded-2xl border-2 border-gray-200 shadow-sm flex items-center cursor-pointer hover:border-electric transition-all group">
+                        <div class="w-12 h-12 bg-orange-50 text-orange-600 rounded-xl flex items-center justify-center mr-4"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect></svg></div>
+                        <div><p class="text-[9px] text-gray-400 font-black uppercase tracking-widest">Apps</p><h3 id="stat-apps" class="text-xl font-black text-dark">0</h3></div>
+                    </div>
+                    <div onclick="window.openManager('shop')" class="bg-white p-6 rounded-2xl border-2 border-gray-200 shadow-sm flex items-center cursor-pointer hover:border-electric transition-all group">
+                        <div class="w-12 h-12 bg-yellow-50 text-yellow-600 rounded-xl flex items-center justify-center mr-4"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle></svg></div>
+                        <div><p class="text-[9px] text-gray-400 font-black uppercase tracking-widest">Shop</p><h3 id="stat-shop" class="text-xl font-black text-dark">0</h3></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-posts" class="tab-content">
+                <div class="flex justify-between items-center mb-8 flex-wrap gap-4 border-b border-gray-200 pb-5">
+                    <h2 id="manager-title" class="text-4xl font-black font-montserrat text-dark tracking-tight flex items-center gap-4">Manage Content Posts</h2>
+                    <button onclick="window.openPostModal()" class="bg-[#111111] text-white hover:bg-black px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest flex items-center shadow-xl hover:scale-105 transition-all border-2 border-gray-800">
+                        <svg class="w-5 h-5 mr-3 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                        Create New Post
+                    </button>
+                </div>
+
+                <div class="w-full max-w-full bg-white border-2 border-gray-200 rounded-[32px] overflow-hidden shadow-sm">
+                    <div class="terminal-header-mini">
+                        <div class="window-dots"><span class="window-dot dot-r"></span><span class="window-dot dot-y"></span><span class="window-dot dot-g"></span></div>
+                        <span class="text-[9px] font-mono tracking-widest font-bold text-gray-400">DATABASE MANAGER</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse min-w-[1000px]">
+                            <thead class="bg-slate-50 text-[10px] text-gray-400 uppercase tracking-widest font-black border-b border-gray-200">
+                                <tr>
+                                    <th class="p-6">Thumbnail & Title Overview</th>
+                                    <th class="p-6">Content Type</th>
+                                    <th class="p-6">Category</th>
+                                    <th class="p-6 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="posts-table-body" class="divide-y divide-gray-200 text-sm">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-notifications" class="tab-content">
+                <div class="flex justify-between items-center mb-10 border-b border-gray-200 pb-5">
+                    <h2 class="text-4xl font-black font-montserrat text-dark tracking-tight flex items-center">
+                        <svg class="w-8 h-8 mr-4 text-electric" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                        Comment Moderation Center
+                    </h2>
+                    <button onclick="window.markAllNotificationsRead()" class="text-xs font-black text-gray-500 hover:text-electric transition underline uppercase tracking-widest">Mark All as Read</button>
+                </div>
+                <div class="space-y-6" id="notifications-list">
+                    </div>
+            </div>
+
+            <div id="tab-users" class="tab-content">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-10 border-b border-gray-200 pb-5">
+                    <h2 class="text-4xl font-black font-montserrat text-dark tracking-tight">Registered Users</h2>
+                    <div class="w-full md:w-80 relative flex items-center">
+                        <i class="fa-solid fa-magnifying-glass absolute left-4 text-gray-400 text-xs pointer-events-none z-10"></i>
+                        <input id="user-search-input" type="text" placeholder="Search by name, email, UID..." class="w-full bg-white text-xs font-bold" style="padding-left: 2.8rem !important;" oninput="window.handleUserSearch()">
+                    </div>
+                </div>
+                <div class="w-full max-w-full bg-white border-2 border-gray-200 rounded-[32px] overflow-hidden shadow-sm">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse min-w-[800px]">
+                            <thead class="bg-gradient-to-r from-slate-50 to-blue-50/50 text-[10px] text-gray-500 uppercase tracking-widest font-black border-b border-gray-200">
+                                <tr>
+                                    <th class="p-4 pl-6 w-16">Avatar</th>
+                                    <th class="p-4">Username</th>
+                                    <th class="p-4">Gmail / Email</th>
+                                    <th class="p-4">Setup</th>
+                                    <th class="p-4 pr-6">UID</th>
+                                </tr>
+                            </thead>
+                            <tbody id="users-table-body" class="divide-y divide-gray-100 text-sm"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="users-load-more-container" class="mt-8 text-center hidden">
+                    <button onclick="window.loadMoreUsers()" class="bg-white hover:bg-gray-50 border-2 border-electric text-electric px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest transition-all active:scale-95 shadow-md">
+                        Load More Users
+                    </button>
+                </div>
+            </div>
+
+            <div id="tab-categories" class="tab-content">
+                <h2 class="text-4xl font-black font-montserrat text-dark mb-10 tracking-tight border-b border-gray-200 pb-5">Category Mappings</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                    <div class="bg-white p-10 rounded-[40px] shadow-sm border-2 border-gray-200 relative overflow-hidden">
+                        <h3 class="font-black text-xl mb-8 text-dark flex items-center border-b border-gray-100 pb-4">
+                            <svg class="mr-3 w-6 h-6 text-electric" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                            Add New Category
+                        </h3>
+                        <form id="category-form" class="space-y-6">
+                            <div>
+                                <label class="block text-[10px] font-black text-gray-500 mb-3 uppercase tracking-widest">Content Type</label>
+                                <select id="new-cat-type" class="w-full bg-slate-50 p-4 rounded-2xl text-sm font-bold border-2 border-gray-100 focus:border-electric text-dark cursor-pointer">
+                                    <option value="video">Videos</option>
+                                    <option value="gpt">GPTs</option>
+                                    <option value="tool">AI Tools</option>
+                                    <option value="prompt">Prompts</option>
+                                    <option value="app">Mobile Apps</option>
+                                    <option value="shop">Premium Shop</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-black text-gray-500 mb-3 uppercase tracking-widest">Category Name</label>
+                                <div class="flex gap-4">
+                                    <input id="new-category" type="text" placeholder="e.g. Midjourney, Shorts Automation" required class="flex-1 bg-slate-50 p-4 rounded-2xl text-sm font-bold border-2 border-gray-100 focus:border-electric text-dark" />
+                                    <button type="submit" class="bg-[#111111] text-brand hover:bg-black px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg border-2 border-gray-800">Add Category</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="bg-white p-10 rounded-[40px] shadow-sm border-2 border-gray-200">
+                        <h3 class="font-black text-xl mb-8 text-dark flex items-center border-b border-gray-100 pb-4">Active Categories</h3>
+                        <div id="categories-list" class="flex flex-col gap-2 max-h-96 overflow-y-auto pr-2 hide-scrollbar"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-banners" class="tab-content">
+                <div class="flex justify-between items-center mb-10 border-b border-gray-200 pb-5">
+                    <h2 class="text-4xl font-black font-montserrat text-dark tracking-tight">Promotional Banners</h2>
+                    <button onclick="window.openModal('banner-modal')" class="bg-[#111111] text-white hover:bg-black px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-2xl flex items-center hover:scale-105 transition-all border-2 border-gray-800">
+                        Add Homepage Banner
+                    </button>
+                </div>
+                <div id="banners-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+            </div>
+
+            <div id="tab-settings" class="tab-content">
+                <h2 class="text-4xl font-black font-montserrat text-dark mb-10 tracking-tight border-b border-gray-200 pb-5">Global Settings & Advertisements</h2>
+                <div class="bg-white p-10 md:p-14 rounded-[40px] shadow-sm border-2 border-gray-200 max-w-5xl">
+                    <form id="settings-form" class="space-y-10">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            <div>
+                                <label class="block text-[10px] font-black text-gray-400 mb-3 uppercase tracking-widest">Top Announcement Banner</label>
+                                <input id="set-announcement" type="text" placeholder="Announcement banner text..." class="w-full bg-slate-50 p-5 rounded-2xl text-sm font-bold border-2 border-gray-100 text-dark mb-4">
+                                <input id="set-announcement-link" type="url" placeholder="Announcement URL link (https://)..." class="w-full bg-slate-50 p-5 rounded-2xl text-sm font-bold border-2 border-gray-100 text-dark">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-black text-gray-400 mb-3 uppercase tracking-widest">Support Email Address</label>
+                                <input id="set-email" type="email" class="w-full bg-slate-50 p-5 rounded-2xl text-sm font-bold border-2 border-gray-100 text-dark mb-4">
+                                <label class="block text-[10px] font-black text-gray-400 mb-3 uppercase tracking-widest">Footer Biography</label>
+                                <textarea id="set-footer" rows="2" class="w-full bg-slate-50 p-5 rounded-2xl text-sm font-bold border-2 border-gray-100 text-dark resize-none"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="pt-10 border-t border-gray-200 bg-slate-50 p-6 md:p-8 rounded-3xl border border-gray-200 shadow-inner">
+                            <h3 class="font-black text-2xl mb-4 text-dark font-montserrat tracking-tight flex items-center">
+                                <svg class="w-6 h-6 mr-3 text-amber-500 fill-amber-400" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="6" y1="12" x2="18" y2="12"/></svg>
+                                Ad Placement & Revenue Configurations
+                            </h3>
+                            <p class="text-xs text-gray-500 font-medium mb-6 leading-relaxed">Paste your ad unit HTML/JS tags below. Supports Google AdSense, Bidvertiser, Monetag, Infolinks, A-Ads, or custom banners. Scripts are executed dynamically.</p>
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-[10px] font-black text-gray-400 mb-1.5 uppercase tracking-widest">Header Ad Code (e.g., Infolinks Global Script or Bidvertiser 728x90 Banner)</label>
+                                    <textarea id="adsense-header" rows="3" placeholder="Paste your header ad script here..." class="w-full bg-white p-4 rounded-xl text-xs font-mono border-2 border-gray-200 text-gray-800"></textarea>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-black text-gray-400 mb-1.5 uppercase tracking-widest">Sidebar Ad Code (e.g., Bidvertiser/A-Ads 300x250 Banner Tag)</label>
+                                    <textarea id="adsense-sidebar" rows="3" placeholder="Paste your sidebar ad script here..." class="w-full bg-white p-4 rounded-xl text-xs font-mono border-2 border-gray-200 text-gray-800"></textarea>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-black text-gray-400 mb-1.5 uppercase tracking-widest">In-Post Ad Code (e.g., Google AdSense In-Article unit or Custom banner link)</label>
+                                    <textarea id="adsense-inpost" rows="3" placeholder="Paste your in-article ad script here..." class="w-full bg-white p-4 rounded-xl text-xs font-mono border-2 border-gray-200 text-gray-800"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pt-10 border-t border-gray-200 bg-slate-50 p-6 md:p-8 rounded-3xl border border-gray-200 shadow-inner my-8">
+                            <h3 class="font-black text-2xl mb-4 text-dark font-montserrat tracking-tight flex items-center">
+                                <svg class="w-6 h-6 mr-3 text-brand" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                                JazzCash & EasyPaisa Merchant Configurations
+                            </h3>
+                            <p class="text-xs text-gray-500 font-medium mb-6 leading-relaxed">Configure your mobile payment details for manual payout verification.</p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                                <div><label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">JazzCash Account Number</label><input id="set-jazzcash-no" type="text" class="w-full bg-white p-4 rounded-xl text-sm font-bold border-2 border-gray-250 text-dark"></div>
+                                <div><label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">JazzCash Account Title</label><input id="set-jazzcash-title" type="text" class="w-full bg-white p-4 rounded-xl text-sm font-bold border-2 border-gray-250 text-dark"></div>
+                                <div><label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">EasyPaisa Account Number</label><input id="set-easypaisa-no" type="text" class="w-full bg-white p-4 rounded-xl text-sm font-bold border-2 border-gray-250 text-dark"></div>
+                                <div><label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">EasyPaisa Account Title</label><input id="set-easypaisa-title" type="text" class="w-full bg-white p-4 rounded-xl text-sm font-bold border-2 border-gray-250 text-dark"></div>
+                            </div>
+                        </div>
+
+                        <!-- Safepay Auto-Payment Configurations -->
+                        <div class="pt-10 border-t border-gray-200 bg-slate-50 p-6 md:p-8 rounded-3xl border border-gray-200 shadow-inner my-8">
+                            <h3 class="font-black text-2xl mb-4 text-dark font-montserrat tracking-tight flex items-center">
+                                <svg class="w-6 h-6 mr-3 text-blue-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                Safepay Auto-Payment Configurations
+                            </h3>
+                            <p class="text-xs text-gray-500 font-medium mb-6 leading-relaxed">Configure your Safepay API keys to enable 100% automated secure card & wallet payments.</p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                                <div>
+                                    <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Safepay Active Environment</label>
+                                    <select id="set-safepay-env" class="w-full bg-white p-4 rounded-xl text-sm font-bold border-2 border-gray-250 text-dark outline-none cursor-pointer">
+                                        <option value="sandbox">Sandbox (Test Mode - No Real Money)</option>
+                                        <option value="production">Production (Live Mode - Real Payouts)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Production Public Key (Required for Live Mode)</label>
+                                    <input id="set-safepay-public-key" type="text" placeholder="e.g. sec_prod_..." class="w-full bg-white p-4 rounded-xl text-sm font-bold border-2 border-gray-250 text-dark">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gemini AI configurations -->
+                        <div class="pt-10 border-t border-gray-200 bg-slate-50 p-6 md:p-8 rounded-3xl border border-gray-200 shadow-inner my-8">
+                            <h3 class="font-black text-2xl mb-4 text-dark font-montserrat tracking-tight flex items-center">
+                                <svg class="w-6 h-6 mr-3 text-purple-500 fill-purple-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                TubeSeekify Gemini AI Support Chatbot
+                            </h3>
+                            <p class="text-xs text-gray-500 font-medium mb-6 leading-relaxed">Configure your Google Gemini API Key to enable 100% free automatic AI support chat for your users.</p>
+                            <div class="space-y-4 text-left">
+                                <div>
+                                    <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Google Gemini API Key</label>
+                                    <input id="set-gemini-key" type="password" placeholder="AI Studio Gemini API Key (AIzaSy...)" class="w-full bg-white p-4 rounded-xl text-sm font-mono border-2 border-gray-250 text-dark">
+                                    <p class="text-[10px] text-gray-400 font-semibold mt-1">Get your free API Key from <a href="https://aistudio.google.com/" target="_blank" class="text-brand hover:underline font-bold">Google AI Studio</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Emulator Auto-Verification Setup Panel -->
+                        <div class="pt-10 border-t border-gray-200 bg-emerald-50/20 p-6 md:p-8 rounded-3xl border-2 border-emerald-500/20 shadow-sm my-8">
+                            <h3 class="font-black text-2xl mb-4 text-emerald-700 font-montserrat tracking-tight flex items-center">
+                                <svg class="w-6 h-6 mr-3 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 18h.01M8 21h8M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                ⚡ Emulator Payment Auto-Verification (100% Automatic)
+                            </h3>
+                            <p class="text-xs text-gray-600 font-medium mb-6 leading-relaxed">
+                                Agar aapke paas smartphone nahi hai, to aap apne laptop par **Android Emulator** (jaise Bluestacks/LDPlayer/MEmu) chalakar EasyPaisa aur JazzCash payments ko **100% automatically verify** kar sakte hain! Aapko ek click bhi nahi karna padega.
+                            </p>
+                            
+                            <div class="space-y-6 text-left text-xs text-gray-700">
+                                <div class="bg-white border border-gray-200 rounded-2xl p-5 space-y-3">
+                                    <h4 class="font-extrabold text-sm text-emerald-800 uppercase tracking-wider">Step-by-Step Setup Guide (Urdu/Hindi):</h4>
+                                    <ol class="list-decimal list-inside space-y-2.5 leading-relaxed font-semibold">
+                                        <li>Laptop me koi bhi Android Emulator install karein aur usme **EasyPaisa / JazzCash app** login karein (Button phone par aaya OTP enter karke).</li>
+                                        <li>Emulator ke Play Store se free **MacroDroid** app download karein.</li>
+                                        <li>MacroDroid me **Add Macro** par click karein aur ye rules set karein:
+                                            <ul class="list-disc list-inside pl-5 mt-1.5 space-y-1.5 font-bold text-gray-600">
+                                                <li><strong class="text-emerald-700">Trigger:</strong> Notification -> Notification Received -> Select Apps: **EasyPaisa** & **JazzCash**.</li>
+                                                <li><strong class="text-emerald-700">Action:</strong> Connectivity -> HTTP POST -> Settings niche diye gaye box se copy karein:</li>
+                                            </ul>
+                                        </li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 gap-6">
+                                    <div>
+                                        <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">MacroDroid Webhook URL</label>
+                                        <div class="flex gap-2">
+                                            <input id="set-webhook-url" readonly type="text" value="Loading Webhook URL..." class="w-full bg-slate-100 p-4 rounded-xl text-xs font-mono border-2 border-gray-200 text-gray-700 select-all outline-none">
+                                            <button type="button" onclick="window.copyWebhookUrl()" class="px-5 bg-emerald-500 hover:bg-emerald-600 text-white font-black uppercase tracking-widest text-[10px] rounded-xl transition active:scale-95 border-0 cursor-pointer shadow-md">Copy</button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">MacroDroid HTTP POST Body (JSON Format)</label>
+                                        <div class="flex gap-2">
+                                            <input id="set-webhook-body" readonly type="text" value='{ "text": "{not_text}", "receivedAt": "{system_time_yr}-{system_time_mth_num}-{system_time_day}T{system_time_hour}:{system_time_min}:{system_time_sec}" }' class="w-full bg-slate-100 p-4 rounded-xl text-xs font-mono border-2 border-gray-200 text-gray-700 select-all outline-none">
+                                            <button type="button" onclick="window.copyWebhookBody()" class="px-5 bg-emerald-500 hover:bg-emerald-600 text-white font-black uppercase tracking-widest text-[10px] rounded-xl transition active:scale-95 border-0 cursor-pointer shadow-md">Copy</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-10 border-t border-gray-100">
+                            <h3 class="font-black text-2xl mb-8 flex items-center text-dark font-montserrat tracking-tight">Social Integrations</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <div><label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">YouTube</label><input id="set-yt" type="url" class="w-full bg-slate-50 p-4 rounded-2xl text-sm font-bold border-2 border-gray-100 text-dark"></div>
+                                <div><label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">WhatsApp</label><input id="set-wa" type="url" class="w-full bg-slate-50 p-4 rounded-2xl text-sm font-bold border-2 border-gray-100 text-dark"></div>
+                                <div><label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Telegram</label><input id="set-tg" type="url" class="w-full bg-slate-50 p-4 rounded-2xl text-sm font-bold border-2 border-gray-100 text-dark"></div>
+                                <div><label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Instagram</label><input id="set-ig" type="url" class="w-full bg-slate-50 p-4 rounded-2xl text-sm font-bold border-2 border-gray-100 text-dark"></div>
+                                <div><label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">TikTok</label><input id="set-tt" type="url" class="w-full bg-slate-50 p-4 rounded-2xl text-sm font-bold border-2 border-gray-100 text-dark"></div>
+                            </div>
+                        </div>
+                        <div class="pt-10 border-t border-gray-100 bg-slate-50 p-6 md:p-8 rounded-3xl border border-gray-200 shadow-inner my-8">
+                            <h3 class="font-black text-2xl mb-4 text-dark font-montserrat tracking-tight flex items-center">
+                                <svg class="w-6 h-6 mr-3 text-emerald-500 fill-emerald-400" viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.99L19.53 19H4.47L12 5.99z"/><rect x="11" y="11" width="2" height="5"/><rect x="11" y="8" width="2" height="2"/></svg>
+                                Sidebar Tabs Ordering (User Portal)
+                            </h3>
+                            <p class="text-xs text-gray-500 font-medium mb-6 leading-relaxed">Prioritize any navigation section to show up first in the user portal sidebar! Set numbers from 1 (top-most) to 6.</p>
+                            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 text-left">
+                                <div><label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Tutorials</label><input id="order-home" type="number" min="1" max="8" class="w-full bg-white p-4 rounded-xl text-sm font-bold border-2 border-gray-200 text-dark"></div>
+                                <div><label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">GPTs</label><input id="order-gems" type="number" min="1" max="8" class="w-full bg-white p-4 rounded-xl text-sm font-bold border-2 border-gray-200 text-dark"></div>
+                                <div><label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Prompts</label><input id="order-prompts" type="number" min="1" max="8" class="w-full bg-white p-4 rounded-xl text-sm font-bold border-2 border-gray-200 text-dark"></div>
+                                <div><label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Tools</label><input id="order-tools" type="number" min="1" max="8" class="w-full bg-white p-4 rounded-xl text-sm font-bold border-2 border-gray-200 text-dark"></div>
+                                <div><label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Apps</label><input id="order-apps" type="number" min="1" max="8" class="w-full bg-white p-4 rounded-xl text-sm font-bold border-2 border-gray-200 text-dark"></div>
+                                <div><label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Shop</label><input id="order-shop" type="number" min="1" max="8" class="w-full bg-white p-4 rounded-xl text-sm font-bold border-2 border-gray-200 text-dark"></div>
+                            </div>
+                        </div>
+
+                        <div class="pt-10 border-t border-gray-100">
+                            <h3 class="font-black text-2xl mb-8 flex items-center text-dark font-montserrat tracking-tight">Legal Documents & Terms</h3>
+                            <div class="space-y-8">
+                                <div><label class="block text-[10px] font-black text-gray-400 mb-3 uppercase tracking-widest">Privacy Policy Content</label><textarea id="set-privacy" rows="6" class="w-full bg-slate-50 p-5 rounded-2xl text-sm leading-relaxed border-2 border-gray-100 text-dark"></textarea></div>
+                                <div><label class="block text-[10px] font-black text-gray-400 mb-3 uppercase tracking-widest">Terms & Conditions Content</label><textarea id="set-terms" rows="6" class="w-full bg-slate-50 p-5 rounded-2xl text-sm leading-relaxed border-2 border-gray-100 text-dark"></textarea></div>
+                            </div>
+                        </div>
+                        
+                        <div class="pt-10 border-t border-gray-100 bg-slate-50 p-6 md:p-8 rounded-3xl border border-gray-200 shadow-inner my-8">
+                            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                                <div class="text-center md:text-left">
+                                    <h3 class="font-black text-xl mb-1 text-dark font-montserrat tracking-tight">🔔 System Push Alerts</h3>
+                                    <p class="text-xs text-gray-500 font-medium leading-relaxed">Receive native browser notifications instantly in the background for new pending payments or unread comment submissions.</p>
+                                </div>
+                                <button type="button" onclick="window.requestPushNotificationPermission()" class="bg-electric text-white hover:bg-blue-600 font-black px-6 py-4 rounded-xl shadow-lg transition-all uppercase tracking-widest text-xs border-0 active:scale-95 duration-200 cursor-pointer">Enable System Push Alerts</button>
+                            </div>
+                        </div>
+                        
+                        <div class="pt-4">
+                            <button type="submit" id="save-settings-btn" class="bg-electric text-white hover:bg-blue-600 font-black px-12 py-5 rounded-2xl shadow-xl transition-all flex items-center uppercase tracking-[0.2em] text-xs border-2 border-transparent">Save Settings</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Tab: Promo Codes -->
+            <div id="tab-promo-codes" class="tab-content">
+                <div class="flex justify-between items-center mb-10 border-b border-gray-200 pb-5">
+                    <h2 class="text-4xl font-black font-montserrat text-dark tracking-tight">🏷️ Promo Code Management</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                    <!-- Left side: Add / Calculate Promo Code -->
+                    <div class="lg:col-span-1 space-y-8">
+                        <div class="bg-white p-8 md:p-10 rounded-[32px] shadow-sm border-2 border-gray-200">
+                            <h3 class="font-black text-xl mb-6 text-dark flex items-center border-b border-gray-100 pb-4">
+                                <svg style="width:20px;height:20px;" class="mr-2.5 text-purple-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"></path></svg>
+                                Create Promo Code
+                            </h3>
+                            <form id="promo-code-form" onsubmit="window.savePromoCode(event)" class="space-y-5">
+                                <div>
+                                    <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Promo Code Name</label>
+                                    <input id="promo-name" type="text" required placeholder="e.g. SAVE50" class="w-full bg-slate-50 p-4 rounded-xl text-sm font-bold border-2 border-gray-100 text-dark uppercase placeholder-gray-400 outline-none focus:border-purple-500 transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Discount Type</label>
+                                    <select id="promo-type" class="w-full bg-slate-50 p-4 rounded-xl text-sm font-bold border-2 border-gray-100 text-dark outline-none focus:border-purple-500 transition-all">
+                                        <option value="percent">Percentage (%)</option>
+                                        <option value="flat">Flat Rate (PKR / RS)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Discount Value</label>
+                                    <input id="promo-value" type="number" required min="1" placeholder="e.g. 50" class="w-full bg-slate-50 p-4 rounded-xl text-sm font-bold border-2 border-gray-100 text-dark placeholder-gray-400 outline-none focus:border-purple-500 transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Applicable Product (Optional Restriction)</label>
+                                    <select id="promo-product-restrict" class="w-full bg-slate-50 p-4 rounded-xl text-sm font-bold border-2 border-gray-100 text-dark outline-none focus:border-purple-500 transition-all">
+                                        <option value="">All Premium Products (Global)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Usage Limit (Max Uses, Optional)</label>
+                                    <input id="promo-max-uses" type="number" min="0" placeholder="e.g. 100 (Empty/0 for unlimited)" class="w-full bg-slate-50 p-4 rounded-xl text-sm font-bold border-2 border-gray-100 text-dark placeholder-gray-400 outline-none focus:border-purple-500 transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Expiry Date & Time (Optional)</label>
+                                    <input id="promo-expiry-date" type="datetime-local" class="w-full bg-slate-50 p-4 rounded-xl text-sm font-bold border-2 border-gray-100 text-dark outline-none focus:border-purple-500 transition-all">
+                                </div>
+                                <div class="flex items-center gap-3 py-2">
+                                    <input id="promo-active" type="checkbox" checked class="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500">
+                                    <label for="promo-active" class="text-xs font-bold text-gray-600 uppercase tracking-widest cursor-pointer select-none">Active & Valid</label>
+                                </div>
+                                <button type="submit" class="w-full py-4 bg-purple-600 hover:bg-purple-700 text-white border-0 font-black rounded-xl text-xs uppercase tracking-widest transition-all shadow-md active:scale-95 duration-200 cursor-pointer">
+                                    Create Promo Code
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <!-- High-tech Promo Code Calculator -->
+                        <div class="bg-darker text-white p-8 md:p-10 rounded-[32px] shadow-2xl border border-white/5 relative overflow-hidden">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+                            <h3 class="font-black text-xl mb-6 text-white flex items-center border-b border-white/5 pb-4">
+                                <svg style="width:20px;height:20px;" class="mr-2.5 text-purple-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 7h6m0 10v-3m-3-4h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M12 17h.01m3-10h.01"></path><rect x="4" y="2" width="16" height="20" rx="2"></rect></svg>
+                                Discount Calculator
+                            </h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-[9px] font-black text-gray-400 mb-2 uppercase tracking-widest">Select Promo Code</label>
+                                    <select id="calc-promo-select" onchange="window.recalculatePromoTest()" class="w-full bg-white/5 p-4 rounded-xl text-xs font-bold border border-white/10 text-white outline-none focus:border-purple-500 transition-all select-none">
+                                        <option value="">No Code Applied</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-[9px] font-black text-gray-400 mb-2 uppercase tracking-widest">Base Original Price (RS)</label>
+                                    <input id="calc-base-price" type="number" value="1000" min="0" oninput="window.recalculatePromoTest()" class="w-full bg-white/5 p-4 rounded-xl text-xs font-bold border border-white/10 text-white outline-none focus:border-purple-500 transition-all placeholder-gray-500">
+                                </div>
+                                
+                                <div class="pt-4 border-t border-white/5 space-y-2.5 text-xs font-bold text-gray-400">
+                                    <div class="flex justify-between"><span>Original Price:</span><span class="text-white font-extrabold" id="calc-display-original">RS 1000</span></div>
+                                    <div class="flex justify-between text-purple-400"><span>Applied Discount:</span><span class="font-extrabold" id="calc-display-discount">-RS 0</span></div>
+                                    <div class="flex justify-between text-emerald-400 pt-2 border-t border-dashed border-white/5 text-sm">
+                                        <span>Final Price:</span>
+                                        <span class="font-black text-base" id="calc-display-final">RS 1000</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right side: Active codes table -->
+                    <div class="lg:col-span-2">
+                        <div class="bg-white p-8 md:p-10 rounded-[32px] shadow-sm border-2 border-gray-200 overflow-hidden">
+                            <h3 class="font-black text-xl mb-6 text-dark flex items-center border-b border-gray-100 pb-4">
+                                <svg style="width:20px;height:20px;" class="mr-2.5 text-purple-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 11H5m14 0a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2m14 0V9a2 2 0 0 0-2-2M5 11V9a2 2 0 0 1 2-2m0 0V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2M7 7h10"></path></svg>
+                                Active Promo Codes & Coupons
+                            </h3>
+                            <div class="overflow-x-auto min-w-full">
+                                <table class="w-full text-left border-collapse min-w-[600px]">
+                                    <thead>
+                                        <tr class="border-b border-gray-200 text-gray-400 text-[10px] font-black uppercase tracking-widest pb-4">
+                                            <th class="py-4 px-6">Promo Code</th>
+                                            <th class="py-4 px-6">Type</th>
+                                            <th class="py-4 px-6">Discount Value</th>
+                                            <th class="py-4 px-6">Status</th>
+                                            <th class="py-4 px-6 text-right">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="promo-codes-table-body" class="divide-y divide-gray-200 text-sm">
+                                        <tr>
+                                            <td colspan="5" class="py-10 text-center text-gray-400 font-bold">Loading promo codes...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Payment Approvals -->
+            <div id="tab-reqs" class="tab-content">
+                <h2 class="text-4xl font-black font-montserrat text-dark mb-10 tracking-tight border-b border-gray-200 pb-5">Manual Payment Approvals</h2>
+                
+                <div class="mb-8 bg-blue-50/50 border-2 border-blue-200/50 p-6 rounded-[28px] flex items-center justify-between text-[11px] font-black shadow-sm text-electric tracking-wider">
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-3 h-3 rounded-full bg-blue-500 animate-pulse"></span>
+                        <span class="uppercase tracking-widest text-gray-500">Database Telemetry:</span>
+                    </div>
+                    <div class="flex gap-8">
+                        <span>Total Purchases: <span id="tel-tot" class="text-dark bg-white border border-gray-200 px-3 py-1 rounded-lg">0</span></span>
+                        <span>Pending count: <span id="tel-pen" class="text-dark bg-white border border-gray-200 px-3 py-1 rounded-lg">0</span></span>
+                        <span>History count: <span id="tel-his" class="text-dark bg-white border border-gray-200 px-3 py-1 rounded-lg">0</span></span>
+                    </div>
+                </div>
+                
+                <div class="w-full max-w-full bg-white border-2 border-gray-200 rounded-[32px] overflow-hidden shadow-sm">
+                    <div class="terminal-header-mini">
+                        <div class="window-dots"><span class="window-dot dot-r"></span><span class="window-dot dot-y"></span><span class="window-dot dot-g"></span></div>
+                        <span class="text-[9px] font-mono tracking-widest font-bold text-gray-400">PENDING TRANSACTIONS</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse min-w-[1000px]">
+                            <thead class="bg-slate-50 text-[10px] text-gray-400 uppercase tracking-widest font-black border-b border-gray-200">
+                                <tr>
+                                    <th class="p-6">User / Sender No</th>
+                                    <th class="p-6">Product Title</th>
+                                    <th class="p-6">Gateway</th>
+                                    <th class="p-6">Transaction ID (TID)</th>
+                                    <th class="p-6">Price</th>
+                                    <th class="p-6">Date</th>
+                                    <th class="p-6">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reqs-table-body" class="divide-y divide-gray-200 text-sm">
+                                <tr>
+                                    <td colspan="7" class="text-center py-10 text-gray-400 font-bold uppercase tracking-widest text-xs">No pending approvals found.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Payment History -->
+            <div id="tab-archive" class="tab-content">
+                <h2 class="text-4xl font-black font-montserrat text-dark mb-10 tracking-tight border-b border-gray-200 pb-5">Payment History</h2>
+                
+                <div class="mb-8 bg-blue-50/50 border-2 border-blue-200/50 p-6 rounded-[28px] flex items-center justify-between text-[11px] font-black shadow-sm text-electric tracking-wider">
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-3 h-3 rounded-full bg-blue-500 animate-pulse"></span>
+                        <span class="uppercase tracking-widest text-gray-500">History Telemetry:</span>
+                    </div>
+                    <div class="flex gap-8">
+                        <span>Total Purchases: <span id="tel-tot-arc" class="text-dark bg-white border border-gray-200 px-3 py-1 rounded-lg">0</span></span>
+                        <span>Pending count: <span id="tel-pen-arc" class="text-dark bg-white border border-gray-200 px-3 py-1 rounded-lg">0</span></span>
+                        <span>History count: <span id="tel-his-arc" class="text-dark bg-white border border-gray-200 px-3 py-1 rounded-lg">0</span></span>
+                    </div>
+                </div>
+                
+                <div class="w-full max-w-full bg-white border-2 border-gray-200 rounded-[32px] overflow-hidden shadow-sm">
+                    <div class="terminal-header-mini">
+                        <div class="window-dots"><span class="window-dot dot-r"></span><span class="window-dot dot-y"></span><span class="window-dot dot-g"></span></div>
+                        <span class="text-[9px] font-mono tracking-widest font-bold text-gray-400">COMPLETED TRANSACTIONS</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse min-w-[1000px]">
+                            <thead class="bg-slate-50 text-[10px] text-gray-400 uppercase tracking-widest font-black border-b border-gray-200">
+                                <tr>
+                                    <th class="p-6">User / Sender No</th>
+                                    <th class="p-6">Product Title</th>
+                                    <th class="p-6">Gateway</th>
+                                    <th class="p-6">Transaction ID (TID)</th>
+                                    <th class="p-6">Price</th>
+                                    <th class="p-6">Date</th>
+                                    <th class="p-6">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="archive-table-body" class="divide-y divide-gray-200 text-sm">
+                                <tr>
+                                    <td colspan="7" class="text-center py-10 text-gray-400 font-bold uppercase tracking-widest text-xs">No transactions recorded.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div> <!-- Close flex-1 overflow-y-auto -->
+        </main>
+    </div>
+
+    <div id="reply-modal" class="fixed inset-0 bg-darker/95 z-[100] hidden flex items-center justify-center p-4 backdrop-blur-xl">
+        <div class="bg-white rounded-[40px] w-full max-w-2xl shadow-2xl relative p-10 border border-gray-100">
+            <button type="button" onclick="window.closeModal('reply-modal')" class="absolute top-8 right-8 text-gray-400 hover:text-dark transition-all"><svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+            <h3 class="text-3xl font-black mb-8 text-dark font-montserrat tracking-tight">Reply to Comment</h3>
+            <div class="bg-slate-50 p-6 rounded-3xl border border-gray-100 mb-8 shadow-inner">
+                <p id="reply-modal-post-title" class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 pb-3 border-b border-gray-200"></p>
+                <div class="flex items-center gap-4 mb-3"><img id="reply-modal-avatar" src="" class="w-10 h-10 rounded-full object-cover bg-gray-200 border-2 border-white shadow-sm"><span id="reply-modal-name" class="font-black text-sm text-darker tracking-tight"></span></div>
+                <p id="reply-modal-text" class="text-gray-700 text-sm ml-[3.25rem] font-medium leading-relaxed italic bg-white p-4 rounded-2xl border border-gray-100"></p>
+            </div>
+            <form id="reply-form" onsubmit="window.handleAdminReply(event)" class="space-y-4">
+                <input type="hidden" id="reply-post-id"><input type="hidden" id="reply-comment-id"><input type="hidden" id="reply-notif-id"><input type="hidden" id="reply-original-user-id">
+                <textarea id="reply-text" rows="4" placeholder="Write your reply here..." required class="w-full bg-white p-5 rounded-2xl text-sm font-bold border-2 border-gray-200 focus:border-electric outline-none transition-all shadow-sm resize-none text-dark"></textarea>
+                <button type="submit" id="btn-submit-reply" class="w-full bg-darker text-electric hover:bg-dark hover:text-white font-black py-5 rounded-2xl shadow-xl transition-all text-xs uppercase tracking-widest border-2 border-gray-800 mt-2">Send Reply</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="post-modal" class="fixed inset-0 bg-darker/95 z-[100] hidden flex items-start justify-center p-4 overflow-y-auto backdrop-blur-xl">
+        <div class="bg-white rounded-[40px] w-full max-w-5xl shadow-2xl relative p-8 md:p-12 border border-gray-100 mt-10 mb-20">
+            <button onclick="window.closeModal('post-modal')" class="absolute top-8 right-8 text-gray-400 hover:text-dark transition-all"><svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+            <h3 id="modal-main-title" class="text-4xl font-black mb-8 text-dark font-montserrat tracking-tight">Create Content Post</h3>
+            <form id="add-post-form" class="space-y-8">
+                <input type="hidden" id="post-type" value="video">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50 p-6 md:p-8 rounded-[32px] border border-gray-200 shadow-sm">
+                    <div class="md:col-span-2"><label class="block text-[10px] font-black mb-2 uppercase text-gray-500 tracking-widest">Post Title</label><input id="post-title" required class="w-full bg-white p-4 rounded-2xl text-sm font-bold shadow-sm border-2 border-gray-100 focus:border-electric text-dark"></div>
+                    
+                    <div class="md:col-span-2">
+                        <label class="block text-[10px] font-black mb-2 uppercase text-gray-500 tracking-widest">Description (HTML allowed for custom layouts)</label>
+                        <textarea id="post-desc" required rows="7" placeholder="<h2>Heading Text</h2> <p>Normal text with <strong>bold emphasis</strong>...</p>" class="w-full bg-white p-4 rounded-2xl text-xs font-mono shadow-sm border-2 border-gray-100 focus:border-electric text-gray-800 transition-colors leading-relaxed"></textarea>
+                    </div>
+                    
+                    <div><label class="block text-[10px] font-black mb-2 uppercase text-gray-500 tracking-widest">Category</label><select id="post-category" class="w-full bg-white p-4 rounded-2xl text-sm font-bold shadow-sm border-2 border-gray-100 focus:border-electric text-dark cursor-pointer"><option value="">Select Category...</option></select></div>
+                    <div><label class="block text-[10px] font-black mb-2 uppercase text-gray-500 tracking-widest">Status Tag (e.g. HOT, NEW)</label><input id="post-tag" placeholder="Leave empty for standard post" class="w-full bg-white p-4 rounded-2xl text-sm font-bold shadow-sm border-2 border-gray-100 focus:border-electric text-dark"></div>
+                    
+                    <div>
+                        <label class="block text-[10px] font-black mb-2 uppercase text-gray-500 tracking-widest">Author</label>
+                        <select id="post-author" class="w-full bg-white p-4 rounded-2xl text-sm font-bold shadow-sm border-2 border-gray-100 focus:border-electric text-dark cursor-pointer">
+                            <option value="Abdul Rehman">Abdul Rehman</option>
+                            <option value="Admin">System Admin</option>
+                            <option value="TubeSeekify">TubeSeekify Network</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-[10px] font-black mb-2 uppercase text-gray-500 tracking-widest">Publish Date</label>
+                        <input id="post-date-picker" type="datetime-local" class="w-full bg-white p-4 rounded-2xl text-sm font-bold shadow-sm border-2 border-gray-100 focus:border-electric text-dark cursor-pointer">
+                    </div>
+
+                    <div class="md:col-span-2 pt-2">
+                        <label class="relative inline-flex items-center cursor-pointer select-none">
+                            <input type="checkbox" id="post-pin-toggle" class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-electric"></div>
+                            <span class="ml-3 text-xs font-black text-gray-600 uppercase tracking-widest">Pin this content to the top featured banner</span>
+                        </label>
+                    </div>
+
+                    <div class="md:col-span-2"><label class="block text-[10px] font-black mb-2 uppercase text-gray-500 tracking-widest" id="thumb-label">Thumbnail Image</label><input id="post-thumb" type="file" accept="image/*" class="w-full bg-white p-3 rounded-2xl text-xs font-bold shadow-sm border-2 border-gray-100 text-dark file:bg-dark file:text-electric file:border-0 file:rounded-xl file:px-4 file:py-2.5 file:text-[10px] file:font-black file:uppercase file:tracking-widest file:mr-4 file:cursor-pointer hover:file:bg-black transition-all cursor-pointer"></div>
+                </div>
+                
+                <div id="section-video" class="form-section active bg-red-50 p-6 md:p-8 rounded-[32px] border-2 border-red-100 shadow-sm"><h4 class="font-black uppercase tracking-widest text-[11px] text-red-600 mb-5 flex items-center border-b border-red-200 pb-4">Video URL</h4><div><label class="block text-[10px] font-black mb-2 uppercase text-gray-600 tracking-widest">YouTube Source URL *</label><input id="post-video-url" placeholder="https://youtube.com/watch?v=..." class="w-full bg-white p-4 rounded-2xl text-sm font-bold shadow-sm border-2 border-red-100 focus:border-red-400 text-dark"></div></div>
+                <div id="section-gpt" class="form-section bg-green-50 p-6 md:p-8 rounded-[32px] border-2 border-green-100 shadow-sm"><h4 class="font-black uppercase tracking-widest text-[11px] text-green-600 mb-5 flex items-center border-b border-green-200 pb-4">GPT Configurations</h4><div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div><label class="block text-[10px] font-black mb-2 uppercase text-gray-600 tracking-widest">OpenAI Assistant Link *</label><input id="post-gpt-url" placeholder="https://chat.openai.com/g/..." class="w-full bg-white p-4 rounded-2xl text-sm font-bold shadow-sm border-2 border-green-100 focus:border-green-400 text-dark"></div><div><label class="block text-[10px] font-black mb-2 uppercase text-gray-600 tracking-widest">Explainer Video URL (Optional)</label><input id="post-gpt-watch-url" placeholder="YouTube URL..." class="w-full bg-white p-4 rounded-2xl text-sm font-bold shadow-sm border-2 border-green-100 focus:border-green-400 text-dark"></div></div></div>
+                <div id="section-tool" class="form-section bg-blue-50 p-6 md:p-8 rounded-[32px] border-2 border-blue-100 shadow-sm"><h4 class="font-black uppercase tracking-widest text-[11px] text-blue-600 mb-5 flex items-center border-b border-blue-200 pb-4">AI Tool Configuration</h4><div><label class="block text-[10px] font-black mb-2 uppercase text-gray-600 tracking-widest">Tool Link *</label><input id="post-tool-url" placeholder="https://..." class="w-full bg-white p-4 rounded-2xl text-sm font-bold shadow-sm border-2 border-blue-100 focus:border-blue-400 text-dark"></div></div>
+                <div id="section-prompt" class="form-section bg-cyan-50 p-6 md:p-8 rounded-[32px] border-2 border-cyan-100 shadow-sm"><div class="flex justify-between items-center mb-6 border-b border-cyan-200 pb-4"><h4 class="font-black uppercase tracking-widest text-[11px] text-cyan-700 flex items-center">Prompt List</h4><button type="button" onclick="window.addPromptRow()" class="text-cyan-900 font-black text-[10px] uppercase flex items-center bg-cyan-200 hover:bg-cyan-300 px-5 py-2.5 rounded-xl transition shadow-md border border-transparent">Add Prompt</button></div><div id="prompts-container" class="space-y-6 max-h-[500px] overflow-y-auto pr-3 hide-scrollbar"></div></div>
+                <div id="section-app" class="form-section bg-orange-50 p-6 md:p-8 rounded-[32px] border-2 border-orange-100 shadow-sm"><h4 class="font-black uppercase tracking-widest text-[11px] text-orange-600 mb-5 flex items-center border-b border-orange-200 pb-4">Mobile App Configuration</h4><div><label class="block text-[10px] font-black mb-2 uppercase text-gray-600 tracking-widest">Download Link *</label><input id="post-app-url" placeholder="https://..." class="w-full bg-white p-4 rounded-2xl text-sm font-bold shadow-sm border-2 border-orange-100 focus:border-orange-400 text-dark"></div></div>
+                <div id="section-shop" class="form-section bg-yellow-50 p-6 md:p-8 rounded-[32px] border-2 border-yellow-200 shadow-sm"><h4 class="font-black uppercase tracking-widest text-[11px] text-yellow-700 mb-5 flex items-center border-b border-yellow-300 pb-4">Premium Shop Product Configurations</h4><div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div><label class="block text-[10px] font-black mb-2 uppercase text-gray-700 tracking-widest">Product Price *</label><input id="post-price" oninput="window.updateAdminProductPromoPreview()" placeholder="e.g. $19.99 or Free Access" class="w-full bg-white p-4 rounded-2xl text-sm font-bold shadow-sm border-2 border-yellow-200 focus:border-yellow-400 text-dark"><div class="mt-3.5 pt-3 border-t border-yellow-200/60"><label class="block text-[9px] font-black text-yellow-600 mb-1.5 uppercase tracking-widest">Select Promo Code to Test Final Price</label><select id="post-promo-test-select" onchange="window.updateAdminProductPromoPreview()" class="w-full bg-white p-3.5 rounded-xl text-xs font-bold border-2 border-yellow-200 focus:border-yellow-400 text-dark outline-none transition-all"><option value="">No Promo Applied (Original Price)</option></select><div id="post-promo-test-result" class="hidden mt-2.5 px-3.5 py-2.5 rounded-xl bg-purple-50 border border-purple-200 text-xs font-bold text-purple-700 items-center justify-between"><span>Calculated Final Price:</span><span id="post-promo-test-price-display" class="font-black">RS 0</span></div></div></div><div><label class="block text-[10px] font-black mb-2 uppercase text-gray-700 tracking-widest">Checkout URL *</label><input id="post-shop-url" placeholder="https://..." class="w-full bg-white p-4 rounded-2xl text-sm font-bold shadow-sm border-2 border-yellow-200 focus:border-yellow-400 text-dark"></div><div><label class="block text-[10px] font-black mb-2 uppercase text-gray-700 tracking-widest">Stock Available (Optional - Leave empty for Unlimited)</label><input id="post-stock" type="number" min="0" placeholder="e.g. 50" class="w-full bg-white p-4 rounded-2xl text-sm font-bold shadow-sm border-2 border-yellow-200 focus:border-yellow-400 text-dark"></div><div><label class="block text-[10px] font-black mb-2 uppercase text-gray-700 tracking-widest">Approved Button Text (e.g. Download Product)</label><input id="post-btn-text" placeholder="Download Product" class="w-full bg-white p-4 rounded-2xl text-sm font-bold shadow-sm border-2 border-yellow-200 focus:border-yellow-400 text-dark"></div></div></div>
+                <div id="section-recommendations" class="bg-indigo-50 p-6 md:p-8 rounded-[32px] border-2 border-indigo-100 hidden shadow-sm"><h4 class="font-black uppercase tracking-widest text-[11px] text-indigo-700 mb-6 flex items-center border-b border-indigo-200 pb-4">Related Recommendations</h4><div id="rec-posts-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-80 overflow-y-auto pr-3 hide-scrollbar"></div></div>
+                <div class="bg-slate-50 p-6 md:p-8 rounded-[32px] border-2 border-gray-200 shadow-sm"><div class="flex justify-between items-center mb-6 border-b border-gray-200 pb-4"><h4 class="font-black uppercase tracking-widest text-[11px] text-gray-700 flex items-center">Resources & Links</h4><button type="button" onclick="window.addResourceRow()" class="text-darker font-black text-[10px] uppercase flex items-center bg-white border-2 border-gray-200 hover:bg-brand px-5 py-2.5 rounded-xl transition-all shadow-sm"><svg class="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg> Add Resource Link</button></div><div id="resources-container" class="space-y-4 max-h-80 overflow-y-auto pr-3 hide-scrollbar"></div></div>
+                <div class="pt-4"><button type="submit" id="btn-submit-post" class="w-full bg-electric text-white hover:bg-blue-600 font-black py-6 rounded-2xl shadow-xl transition-all text-sm uppercase tracking-[0.3em] flex justify-center items-center">Save Content Post</button></div>
+            </form>
+        </div>
+    </div>
+
+    <div id="banner-modal" class="fixed inset-0 bg-darker/95 z-[100] hidden flex items-center justify-center p-4 backdrop-blur-xl">
+        <div class="bg-white rounded-[40px] w-full max-w-lg shadow-2xl relative p-12 border border-gray-100 text-center">
+            <button onclick="window.closeModal('banner-modal')" class="absolute top-8 right-8 text-gray-400 hover:text-dark transition-all"><svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+            <h3 class="text-3xl font-black mb-3 text-dark font-montserrat tracking-tight">Add Homepage Banner</h3>
+            <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-8">Recommended Size: 1200x400 (3:1 Ratio)</p>
+            <form id="add-banner-form" class="space-y-8">
+                <div class="relative"><input id="ban-img" type="file" accept="image/*" required class="w-full bg-slate-50 p-6 rounded-2xl text-xs font-bold border-2 border-dashed border-gray-300 hover:border-electric transition-colors cursor-pointer file:bg-dark file:text-electric file:border-0 file:rounded-xl file:px-5 file:py-2.5 file:text-[10px] file:font-black file:uppercase file:tracking-widest cursor-pointer"></div>
+                <button type="submit" id="btn-submit-banner" class="w-full bg-electric text-white font-black py-5 rounded-2xl shadow-xl transition-all text-xs uppercase tracking-[0.2em]">Upload Banner</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Stylized Premium Confirmation Modal -->
+    <div id="premium-confirm-modal" class="fixed inset-0 bg-slate-900/60 dark:bg-black/80 z-[200] hidden flex items-center justify-center p-4 backdrop-blur-md transition-all duration-300">
+        <div class="bg-white rounded-[32px] w-full max-w-md shadow-2xl relative p-8 border border-gray-150 dark:border-slate-800 text-center animate-fade-in">
+            <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-inner" style="background-color: rgba(239, 68, 68, 0.08); border: 1.5px solid rgba(239, 68, 68, 0.2); color: #ef4444;">
+                <i class="fa-solid fa-triangle-exclamation text-2xl animate-pulse"></i>
+            </div>
+            <h3 id="confirm-modal-title" class="text-2xl font-black mb-3 text-dark font-montserrat tracking-tight">Confirm Action</h3>
+            <p id="confirm-modal-message" class="text-sm font-semibold text-gray-500 leading-relaxed mb-8">Are you sure you want to proceed with this action?</p>
+            <div class="flex gap-4">
+                <button type="button" id="btn-confirm-no" class="flex-1 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-dark font-black py-4 rounded-xl shadow-sm transition-all text-xs uppercase tracking-widest active:scale-95 border-0 cursor-pointer">
+                    Cancel
+                </button>
+                <button type="button" id="btn-confirm-yes" class="flex-1 bg-red-500 hover:bg-red-600 text-white font-black py-4 rounded-xl shadow-md transition-all text-xs uppercase tracking-widest active:scale-95 border-0 hover:shadow-glow-red cursor-pointer">
+                    Yes, Proceed
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="admin_logic.js"></script>
+</body>
+</html>
