@@ -959,8 +959,8 @@
 
         <!-- FOOTER - Overhauled to match Design System HSL tokens -->
         <footer class="mt-auto shrink-0 bg-[var(--bg-card)] border-t border-[var(--border-primary)] transition-colors duration-300" style="color:var(--text-body);">
-            <div style="max-width:1300px;margin:0 auto;padding:60px 32px 40px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;" class="grid-cols-1 md:grid-cols-4">
-                <div>
+            <div class="max-w-[1300px] mx-auto px-8 pt-16 pb-12 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12">
+                <div class="col-span-1 md:col-span-5 flex flex-col gap-1">
                     <div class="flex items-center mb-5 cursor-pointer" onclick="window.location.hash='home'; window.state.currentPost=null; window.renderUI();">
                         <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;margin-right:10px;flex-shrink:0;">
                             <img src="favicon.png" alt="TubeSeekify Logo" style="width:30px;height:30px;border-radius:50%;object-fit:contain;">
@@ -970,11 +970,11 @@
                     <p id="footer-bio" style="font-size:13px;color:var(--text-body);line-height:1.7;margin-bottom:20px;"></p>
                     <div id="footer-socials" class="flex items-center gap-3 mt-4"></div>
                 </div>
-                <div>
+                <div class="col-span-1 md:col-span-3 flex flex-col gap-1">
                     <h4 style="font-size:11px;font-weight:800;color:var(--text-muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:20px;">Get In Touch</h4>
-                    <p id="footer-email" style="font-size:13px;color:var(--color-primary);margin-bottom:12px;font-weight:600;cursor:pointer;"></p>
+                    <p id="footer-email" class="text-[13px] text-[var(--color-primary)] font-semibold cursor-pointer break-all hover:underline leading-relaxed mb-3"></p>
                 </div>
-                <div>
+                <div class="col-span-1 md:col-span-2 flex flex-col gap-1">
                     <h4 style="font-size:11px;font-weight:800;color:var(--text-muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:20px;">Quick Links</h4>
                     <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
                         <li><a href="#home" style="font-size:13px;color:var(--text-body);text-decoration:none;font-weight:500;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--text-body)'">Home</a></li>
@@ -985,7 +985,7 @@
                         <li><a href="#account" style="font-size:13px;color:var(--text-body);text-decoration:none;font-weight:500;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--text-body)'">Account</a></li>
                     </ul>
                 </div>
-                <div>
+                <div class="col-span-1 md:col-span-2 flex flex-col gap-1">
                     <h4 style="font-size:11px;font-weight:800;color:var(--text-muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:20px;">Legal</h4>
                     <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
                         <li><a href="#privacy" style="font-size:13px;color:var(--text-body);text-decoration:none;font-weight:500;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--text-body)'">Privacy Policy</a></li>
