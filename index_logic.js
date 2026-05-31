@@ -625,7 +625,13 @@
         };
 
         window.sharePost = (platform, title) => {
-            const currentUrl = encodeURIComponent(window.location.href); const text = encodeURIComponent(title); let shareUrl = '';
+            let rawUrl = window.location.href;
+            if (window.state.currentPost) {
+                const p = window.state.currentPost;
+                const descText = window.stripDesc ? window.stripDesc(p.desc || '', 150) : '';
+                rawUrl = `${window.location.origin}/api/share?id=${p.id}&title=${encodeURIComponent(p.title || '')}&img=${encodeURIComponent(p.thumbnail || '')}&desc=${encodeURIComponent(descText)}`;
+            }
+            const currentUrl = encodeURIComponent(rawUrl); const text = encodeURIComponent(title); let shareUrl = '';
             if (platform === 'wa') shareUrl = `https://api.whatsapp.com/send?text=*Check this:* ${text}%0A${currentUrl}`;
             if (platform === 'tg') shareUrl = `https://t.me/share/url?url=${currentUrl}&text=${text}`;
             if (platform === 'tw') shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${currentUrl}`;
@@ -713,7 +719,12 @@
         };
 
         window.copyPostLink = () => {
-            const url = window.location.href;
+            let url = window.location.href;
+            if (window.state.currentPost) {
+                const p = window.state.currentPost;
+                const descText = window.stripDesc ? window.stripDesc(p.desc || '', 150) : '';
+                url = `${window.location.origin}/api/share?id=${p.id}&title=${encodeURIComponent(p.title || '')}&img=${encodeURIComponent(p.thumbnail || '')}&desc=${encodeURIComponent(descText)}`;
+            }
             if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(url).then(() => { notify('Link copied!'); }).catch(()=>{}); } 
             else { const ta = document.createElement("textarea"); ta.value = url; ta.style.position="fixed"; ta.style.left="-999999px"; document.body.appendChild(ta); ta.focus(); ta.select(); try { document.execCommand('copy'); notify('Link copied!'); } catch(e){} ta.remove(); }
         };
