@@ -24,7 +24,7 @@ git add .
 
 echo.
 echo [5/5] Commit aur Push kar rahe hain...
-git commit -m "feat: Add premium image auto-compression toggle control panel and dynamic stats size preview in Admin Panel"
+git commit -m "feat: Add transparent favicon_small.png and integrate auto-compression controls with dynamic stats size preview in Admin Panel"
 
 echo.
 echo 🚀 Upload (Push) kar rahe hain...

@@ -6,6 +6,8 @@ module.exports = (req, res) => {
     const safeImg = img ? decodeURIComponent(img) : "https://i.postimg.cc/C1ppGZh3/Gemini-Generated-Image-c2b4vrc2b4vrc2b4-(1)-Picsart-Background-Remover.png";
     const safeDesc = desc ? decodeURIComponent(desc) : "Hub for AI content creation, premium GPT prompts, and AI tools.";
     
+    const imageType = safeImg.toLowerCase().includes('.png') ? 'image/png' : 'image/jpeg';
+    
     // Convert slug/id for redirection
     const redirectUrl = `https://tubeseekify.online/#${id || "home"}`;
 
@@ -30,7 +32,7 @@ module.exports = (req, res) => {
     <!-- Image dimension indicators for instant scraper display -->
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:type" content="${imageType}">
 
     <!-- Twitter Card metadata -->
     <meta name="twitter:card" content="summary_large_image">
