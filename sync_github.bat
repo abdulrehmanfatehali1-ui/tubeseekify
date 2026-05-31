@@ -24,7 +24,7 @@ git add .
 
 echo.
 echo [5/5] Commit aur Push kar rahe hain...
-git commit -m "feat: Add white-and-blue Markhor favicon, visual loading animation, mobile drawer sidebar, and payment configuration"
+git commit -m "feat: Add premium image auto-compression toggle control panel and dynamic stats size preview in Admin Panel"
 
 echo.
 echo 🚀 Upload (Push) kar rahe hain...

@@ -1414,7 +1414,47 @@
                         </label>
                     </div>
 
-                    <div class="md:col-span-2"><label class="block text-[10px] font-black mb-2 uppercase text-gray-500 tracking-widest" id="thumb-label">Thumbnail Image</label><input id="post-thumb" type="file" accept="image/*" class="w-full bg-white p-3 rounded-2xl text-xs font-bold shadow-sm border-2 border-gray-100 text-dark file:bg-dark file:text-electric file:border-0 file:rounded-xl file:px-4 file:py-2.5 file:text-[10px] file:font-black file:uppercase file:tracking-widest file:mr-4 file:cursor-pointer hover:file:bg-black transition-all cursor-pointer"></div>
+                    <div class="md:col-span-2">
+                        <label class="block text-[10px] font-black mb-2 uppercase text-gray-500 tracking-widest" id="thumb-label">Thumbnail Image</label>
+                        <input id="post-thumb" type="file" accept="image/*" class="w-full bg-white p-3 rounded-2xl text-xs font-bold shadow-sm border-2 border-gray-100 text-dark file:bg-dark file:text-electric file:border-0 file:rounded-xl file:px-4 file:py-2.5 file:text-[10px] file:font-black file:uppercase file:tracking-widest file:mr-4 file:cursor-pointer hover:file:bg-black transition-all cursor-pointer">
+                        
+                        <!-- Dynamic Premium Auto-Convert & Compression Control Panel -->
+                        <div class="mt-3 p-4 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-gray-150 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-xl bg-electric/10 text-electric flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-bolt text-lg"></i>
+                                </div>
+                                <div class="text-left">
+                                    <p class="text-xs font-black text-dark dark:text-white uppercase tracking-wider">Auto-Convert & Compress</p>
+                                    <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Quality-Preserving Smart compression</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-4">
+                                <!-- Toggle Switch -->
+                                <label class="relative inline-flex items-center cursor-pointer select-none">
+                                    <input type="checkbox" id="post-thumb-compress-toggle" checked class="sr-only peer">
+                                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-electric"></div>
+                                </label>
+                                
+                                <!-- Compression Quality Badge -->
+                                <span class="inline-flex px-3 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest bg-emerald-50 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800 shadow-sm" id="post-thumb-status-badge">
+                                    Retina 85% Quality
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <!-- Dynamic File Stats Display -->
+                        <div id="post-thumb-stats" class="hidden mt-2 p-3 bg-purple-50 dark:bg-purple-950/20 border border-purple-200 dark:border-purple-800/40 rounded-xl text-xs font-bold text-purple-700 dark:text-purple-400 items-center justify-between animate-fade-in w-full">
+                            <div class="flex items-center space-x-2">
+                                <i class="fa-solid fa-gauge-high"></i>
+                                <span id="post-thumb-original-size">Original: --</span>
+                                <span>→</span>
+                                <span id="post-thumb-compressed-size" class="font-black text-dark dark:text-white">Optimized: --</span>
+                            </div>
+                            <span id="post-thumb-saving-percent" class="bg-purple-100 dark:bg-purple-900/50 px-2 py-0.5 rounded-lg text-[10px] font-black">--% Saved</span>
+                        </div>
+                    </div>
                 </div>
                 
                 <div id="section-video" class="form-section active bg-red-50 p-6 md:p-8 rounded-[32px] border-2 border-red-100 shadow-sm"><h4 class="font-black uppercase tracking-widest text-[11px] text-red-600 mb-5 flex items-center border-b border-red-200 pb-4">Video URL</h4><div><label class="block text-[10px] font-black mb-2 uppercase text-gray-600 tracking-widest">YouTube Source URL *</label><input id="post-video-url" placeholder="https://youtube.com/watch?v=..." class="w-full bg-white p-4 rounded-2xl text-sm font-bold shadow-sm border-2 border-red-100 focus:border-red-400 text-dark"></div></div>
@@ -1436,7 +1476,41 @@
             <h3 class="text-3xl font-black mb-3 text-dark font-montserrat tracking-tight">Add Homepage Banner</h3>
             <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-8">Recommended Size: 1200x400 (3:1 Ratio)</p>
             <form id="add-banner-form" class="space-y-8">
-                <div class="relative"><input id="ban-img" type="file" accept="image/*" required class="w-full bg-slate-50 p-6 rounded-2xl text-xs font-bold border-2 border-dashed border-gray-300 hover:border-electric transition-colors cursor-pointer file:bg-dark file:text-electric file:border-0 file:rounded-xl file:px-5 file:py-2.5 file:text-[10px] file:font-black file:uppercase file:tracking-widest cursor-pointer"></div>
+                <div class="relative">
+                    <input id="ban-img" type="file" accept="image/*" required class="w-full bg-slate-50 p-6 rounded-2xl text-xs font-bold border-2 border-dashed border-gray-300 hover:border-electric transition-colors cursor-pointer file:bg-dark file:text-electric file:border-0 file:rounded-xl file:px-5 file:py-2.5 file:text-[10px] file:font-black file:uppercase file:tracking-widest cursor-pointer">
+                    
+                    <!-- Dynamic Banner Compression Controls -->
+                    <div class="mt-3 p-4 bg-slate-50 rounded-2xl border border-gray-200 flex items-center justify-between gap-4 text-left">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 rounded-lg bg-electric/10 text-electric flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-bolt text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-black text-dark uppercase tracking-wider">Smart Auto-Compress</p>
+                                <p class="text-[8px] text-gray-400 font-bold uppercase tracking-widest">Optimized 3:1 Banner</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <label class="relative inline-flex items-center cursor-pointer select-none">
+                                <input type="checkbox" id="ban-img-compress-toggle" checked class="sr-only peer">
+                                <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-electric"></div>
+                            </label>
+                            <span class="inline-flex px-2 py-0.5 rounded-md text-[8px] font-black uppercase tracking-widest bg-emerald-50 text-emerald-700 border border-emerald-200" id="ban-img-status-badge">
+                                Retina 85%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- Dynamic Banner Stats -->
+                    <div id="ban-img-stats" class="hidden mt-2 p-3 bg-purple-50 border border-purple-200 rounded-xl text-[10px] font-bold text-purple-750 flex items-center justify-between w-full">
+                        <div class="flex items-center space-x-2">
+                            <span id="ban-img-original-size">Orig: --</span>
+                            <span>→</span>
+                            <span id="ban-img-compressed-size" class="font-black text-dark">Optimized: --</span>
+                        </div>
+                        <span id="ban-img-saving-percent" class="bg-purple-100 px-2 py-0.5 rounded-md font-black">--% Saved</span>
+                    </div>
+                </div>
                 <button type="submit" id="btn-submit-banner" class="w-full bg-electric text-white font-black py-5 rounded-2xl shadow-xl transition-all text-xs uppercase tracking-[0.2em]">Upload Banner</button>
             </form>
         </div>
